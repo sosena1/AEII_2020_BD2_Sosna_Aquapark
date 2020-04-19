@@ -1,0 +1,1 @@
+Podczas wyboru silnika wybrać pierwszą opcję, czyli Standalone MySQL Server/ Classic MySQL Replication.
