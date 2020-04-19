@@ -17,19 +17,13 @@ public class UserPrincipal implements UserDetails {
         return null;
     }
 
-    @Override
-    public String getPassword() {
-        return user.getPassword();
-    }
 
     @Override
-    public String getUsername() {
-        return user.getUserName();
-    }
+    public String getPassword() { return user.getPassword();}
 
-    public Long getUserId() {
-        return user.getUserId();
-    }
+    @Override
+    public String getUsername() { return  user.getUserName(); }
+
 
     @Override
     public boolean isAccountNonExpired() {
