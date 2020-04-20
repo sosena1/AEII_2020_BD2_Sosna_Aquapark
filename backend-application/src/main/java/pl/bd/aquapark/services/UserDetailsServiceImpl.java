@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.bd.aquapark.endpoint.user.data.User;
+import pl.bd.aquapark.dao.User;
 import pl.bd.aquapark.endpoint.user.data.UserPrincipal;
 import pl.bd.aquapark.endpoint.user.repository.UserRepository;
 

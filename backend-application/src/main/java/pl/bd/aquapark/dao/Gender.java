@@ -1,4 +1,4 @@
-package pl.bd.aquapark.endpoint.user.data;
+package pl.bd.aquapark.dao;
 
 public enum Gender {
     MALE,

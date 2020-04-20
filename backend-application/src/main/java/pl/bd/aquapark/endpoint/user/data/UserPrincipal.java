@@ -2,6 +2,7 @@ package pl.bd.aquapark.endpoint.user.data;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.bd.aquapark.dao.User;
 
 import java.util.Collection;
 
