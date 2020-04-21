@@ -10,7 +10,7 @@ import java.util.Date;
 @JsonIgnoreProperties
 @Entity
 @Table(name = "User")
- @Data public class User implements Serializable {
+ @Data public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
