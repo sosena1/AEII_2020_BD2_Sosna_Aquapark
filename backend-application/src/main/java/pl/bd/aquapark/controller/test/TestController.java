@@ -1,4 +1,4 @@
-package pl.bd.aquapark.endpoint.test.controller;
+package pl.bd.aquapark.controller.test;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
