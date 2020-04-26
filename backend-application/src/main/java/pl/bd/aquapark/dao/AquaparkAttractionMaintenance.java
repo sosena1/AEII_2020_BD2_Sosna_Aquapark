@@ -19,4 +19,7 @@ public class AquaparkAttractionMaintenance {
 
     @ManyToOne
     private Employee employee;
+
+    @ManyToOne
+    private AquaparkAttraction aquaparkAttraction;
 }

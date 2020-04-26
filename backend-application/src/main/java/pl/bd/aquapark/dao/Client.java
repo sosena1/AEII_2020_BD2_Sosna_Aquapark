@@ -1,6 +1,7 @@
 package pl.bd.aquapark.dao;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +16,7 @@ class Client {
     private Long clientId;
 
     @Column(name = "ownsAccount")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean ownsAccount;
 
     @OneToOne(mappedBy = "client")

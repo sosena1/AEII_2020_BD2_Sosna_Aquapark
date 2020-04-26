@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "PriceListItem")
@@ -29,6 +30,7 @@ class PriceListItem {
     @ManyToOne
     private PriceList priceList;
 
-    @ManyToOne
-    private AquaparkAttractionUsage aquaparkAttractionUsage;
+    @OneToMany
+    @JoinColumn(name = "usageId")
+    private List<AquaparkAttractionUsage> aquaparkAttractionUsage;
 }

@@ -24,4 +24,8 @@ public class AquaparkAttraction {
     @OneToMany
     @JoinColumn(name = "attractionId")
     private List<AquaparkAttractionUsage> aquaparkAttractionUsages;
+
+    @OneToMany
+    @JoinColumn(name = "attractionId")
+    private List<AquaparkAttractionMaintenance> aquaparkAttractionMaintenances;
 }
