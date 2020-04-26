@@ -1,6 +1,7 @@
 package pl.bd.aquapark.dao;
 
 import lombok.Data;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -16,6 +17,7 @@ class AquaparkAttractionGateEvent {
     private Long eventId;
 
     @Column(name = "isEntering")
+    @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean isEntering;
 
     @Column(name = "date")
@@ -27,7 +29,7 @@ class AquaparkAttractionGateEvent {
     @Column(name = "gateId")
     private Long gateId;
 
-    @Column(name = "clientIdentificatorId")
+    @Column(name = "identificatorId")
     private Long clientIdentificatorId;
 
     @ManyToOne
@@ -35,4 +37,18 @@ class AquaparkAttractionGateEvent {
 
     @ManyToOne
     private AquaparkAttractionGate aquaparkAttractionGate;
+
+    @OneToOne(mappedBy = "enteringEvent")
+    private AquaparkAttractionUsage aquaparkAttractionUsageEntering;
+
+    @OneToOne(mappedBy = "leavingEvent")
+    private AquaparkAttractionUsage aquaparkAttractionUsageLeaving;
+
+    public AquaparkAttractionUsage getCorrectEvent() {
+        if (isEntering) {
+            return aquaparkAttractionUsageEntering;
+        } else {
+            return aquaparkAttractionUsageLeaving;
+        }
+    }
 }

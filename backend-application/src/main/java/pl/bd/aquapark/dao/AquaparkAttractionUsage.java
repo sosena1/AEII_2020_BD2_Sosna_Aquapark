@@ -21,9 +21,8 @@ class AquaparkAttractionUsage {
     @ManyToOne
     private AquaparkAttraction aquaparkAttraction;
 
-    @OneToMany
-    @JoinColumn(name = "usageId")
-    private List<PriceListItem> priceListItems;
+    @ManyToOne
+    private PriceListItem priceListItem;
 
     @OneToOne(optional = false)
     @JoinColumn(name = "eventId", referencedColumnName = "enteringEventId") //todo tu i poniżej mam watpliwosci co do mapowania!
