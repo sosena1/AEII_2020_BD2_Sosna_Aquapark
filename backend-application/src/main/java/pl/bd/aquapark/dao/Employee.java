@@ -19,7 +19,7 @@ class Employee {
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "employeeId")
     private List<PriceList> priceLists;
 
     @ManyToMany(cascade = {CascadeType.ALL})

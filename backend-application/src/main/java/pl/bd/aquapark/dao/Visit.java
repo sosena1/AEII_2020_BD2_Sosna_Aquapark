@@ -29,9 +29,6 @@ class Visit {
     @Column(name = "value", nullable = false)
     private BigDecimal value;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
     @ManyToOne
     private Client client;
 

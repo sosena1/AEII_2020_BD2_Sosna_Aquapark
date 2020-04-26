@@ -25,11 +25,11 @@ class AquaparkAttractionUsage {
     private PriceListItem priceListItem;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "eventId", referencedColumnName = "enteringEventId") //todo tu i poniżej mam watpliwosci co do mapowania!
+    @JoinColumn(name = "enteringEventId", referencedColumnName = "eventId")
     private AquaparkAttractionGateEvent enteringEvent;
 
     @OneToOne(optional = true)
-    @JoinColumn(name = "eventId", referencedColumnName = "leavingEventId")
+    @JoinColumn(name = "leavingEventId", referencedColumnName = "eventId")
     private AquaparkAttractionGateEvent leavingEvent;
 
 
