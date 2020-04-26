@@ -23,7 +23,7 @@ class Client {
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "clientId")
     private List<Visit> visits;
 
 }
