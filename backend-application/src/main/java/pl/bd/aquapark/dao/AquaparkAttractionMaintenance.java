@@ -1,11 +1,13 @@
 package pl.bd.aquapark.dao;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "AquaparkAttractionMaintenance")
-public class AquaparkAttractionMaintenance {
+public @Data class AquaparkAttractionMaintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "attractionMaintenanceId")
