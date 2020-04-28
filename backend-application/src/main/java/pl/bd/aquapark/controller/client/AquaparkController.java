@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.bd.aquapark.dao.*;
 import pl.bd.aquapark.dto.AquaparkAttractionDto;
+import pl.bd.aquapark.dto.PriceListItemDto;
 import pl.bd.aquapark.repository.AttractionRepository;
 import pl.bd.aquapark.repository.GenderRepository;
 import pl.bd.aquapark.repository.PriceListRepository;
@@ -44,9 +45,14 @@ public class AquaparkController {
     }
 
     @GetMapping(value = "/pricelist")
-    public ResponseEntity<List<PriceListItem>> getPriceListItems() {
+    public ResponseEntity<List<PriceListItemDto>> getPriceListItems() {
         PriceList priceList = PriceListService.getPriceListForDate(priceListRepository, DateService.utilDateToSqlDate(new java.util.Date()));
-        return ResponseEntity.ok(priceList.getPriceListItems());
+        return ResponseEntity.ok(priceList
+            .getPriceListItems()
+            .stream()
+                .map(PriceListItemDto::fromPriceListItem)
+                .collect(Collectors.toList())
+        );
     }
 
     @GetMapping(value = "/attractions")
