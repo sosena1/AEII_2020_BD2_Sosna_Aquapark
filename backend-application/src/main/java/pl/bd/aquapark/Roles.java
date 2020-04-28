@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 public enum Roles implements GrantedAuthority {
     USER("USER"),
+    ANALITIC("ANALITIC"),
     SELLER("SELLER");
 
 

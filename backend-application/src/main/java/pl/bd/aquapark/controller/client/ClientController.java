@@ -54,7 +54,7 @@ public class ClientController {
             @RequestParam String pesel,
             HttpServletRequest request) {
         if (!request.isUserInRole(Roles.SELLER.toString())) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         List<User> users = GetAllService.getAll(userRepository);
         users = new FilteringService<>(users)
