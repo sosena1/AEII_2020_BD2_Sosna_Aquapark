@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.bd.aquapark.Roles;
 import pl.bd.aquapark.dao.AquaparkAttractionMaintenance;
 import pl.bd.aquapark.dao.Visit;
+import pl.bd.aquapark.dto.AquaparkMaintenanceDto;
 import pl.bd.aquapark.repository.AttractionMaintenanceRepository;
 import pl.bd.aquapark.repository.AttractionRepository;
 import pl.bd.aquapark.repository.VisitRepository;
@@ -26,6 +27,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/raport")
@@ -77,7 +79,14 @@ public class RaportController {
 
             operationalReport.maintenancesPerDay.put(complexDate, maintenanceByDay.size());
 
-            operationalReport.aquaparkAttractionMaintenancesOrdered.addAll(maintenanceByDay);
+            operationalReport.aquaparkAttractionMaintenancesOrdered.addAll(
+                    maintenanceByDay
+                        .stream()
+                        .map(
+                            AquaparkMaintenanceDto::fromAquaparkAttractionMaintenance
+                        )
+                        .collect(Collectors.toList())
+            );
         }
 
         return ResponseEntity.ok(operationalReport);
@@ -91,7 +100,7 @@ public class RaportController {
 
     public static @Data class OperationalReport {
         private HashMap<ComplexDate, Integer> maintenancesPerDay = new HashMap<>();
-        private List<AquaparkAttractionMaintenance> aquaparkAttractionMaintenancesOrdered = new ArrayList<>();
+        private List<AquaparkMaintenanceDto> aquaparkAttractionMaintenancesOrdered = new ArrayList<>();
     }
 
     public static @Data class ComplexDate {
