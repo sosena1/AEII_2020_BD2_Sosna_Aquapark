@@ -1,4 +1,4 @@
-package pl.bd.aquapark.controller.client;
+package pl.bd.aquapark.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class ClientController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id, HttpServletRequest request) {
         boolean authorized = false;
-        if (request.isUserInRole(Roles.SELLER.getAuthority())) {
+        if (request.isUserInRole(Roles.SELLER.toString())) {
             authorized = true;
         }
         Optional<User> user = userRepository.findById(id);

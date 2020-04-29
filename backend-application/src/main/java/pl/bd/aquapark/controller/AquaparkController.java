@@ -1,4 +1,4 @@
-package pl.bd.aquapark.controller.client;
+package pl.bd.aquapark.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,10 +11,7 @@ import pl.bd.aquapark.repository.AttractionRepository;
 import pl.bd.aquapark.repository.GenderRepository;
 import pl.bd.aquapark.repository.PriceListRepository;
 import pl.bd.aquapark.repository.RoleRepository;
-import pl.bd.aquapark.service.DateService;
-import pl.bd.aquapark.service.FilteringService;
-import pl.bd.aquapark.service.GetAllService;
-import pl.bd.aquapark.service.PriceListService;
+import pl.bd.aquapark.service.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,7 +44,7 @@ public class AquaparkController {
 
     @GetMapping(value = "/pricelist")
     public ResponseEntity<List<PriceListItemDto>> getPriceListItems() {
-        PriceList priceList = PriceListService.getPriceListForDate(priceListRepository, DateService.getCurrentDay());
+        PriceList priceList = PricingService.getPriceListForDate(priceListRepository, DateService.getCurrentDay());
         return ResponseEntity.ok(priceList
             .getPriceListItems()
             .stream()
@@ -55,7 +52,6 @@ public class AquaparkController {
                 .collect(Collectors.toList())
         );
     }
-
     @GetMapping(value = "/attractions")
     public ResponseEntity<List<AquaparkAttractionDto>> getAttractions(@RequestParam(required = false) String name) {
         List<AquaparkAttraction> aquaparkAttractions = GetAllService.getAll(attractionRepository);

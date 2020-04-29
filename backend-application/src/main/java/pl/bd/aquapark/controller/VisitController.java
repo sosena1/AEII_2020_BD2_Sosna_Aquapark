@@ -1,4 +1,4 @@
-package pl.bd.aquapark.controller.client;
+package pl.bd.aquapark.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

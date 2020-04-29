@@ -26,12 +26,6 @@ class AquaparkAttractionGateEvent {
     @Column(name = "time")
     private Time time;
 
-    @Column(name = "gateId")
-    private Long gateId;
-
-    @Column(name = "identificatorId")
-    private Long clientIdentificatorId;
-
     @ManyToOne
     private ClientIdentificator clientIdentificator;
 
