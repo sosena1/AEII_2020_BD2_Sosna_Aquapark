@@ -35,4 +35,8 @@ public class DateService {
     public static java.sql.Date utilDateToSqlDate(java.util.Date date) {
         return new java.sql.Date(date.getTime());
     }
+
+    public static java.sql.Date getCurrentDay() {
+        return utilDateToSqlDate(new java.util.Date());
+    }
 }

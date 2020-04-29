@@ -88,6 +88,38 @@ public class FilteringService<T> {
 
     }
 
+    /*
+    Filtruje według daty (starting date może być równe lub mniejsze niż aktualna data)
+     */
+    public FilteringService<T> starts(Date startingDate, DateGetter<T> getter) {
+        if (startingDate == null) return this;
+
+        filteredList = filteredList
+                .stream()
+                .filter(
+                        (T t) -> {
+                            return !(getter.getDate(t).compareTo(startingDate) > 0); //todo test
+                        })
+                .collect(Collectors.toList());
+        return this;
+    }
+
+    /*
+    Filtruje według daty (ending date może być równe lub większe niż aktualna data)
+     */
+    public FilteringService<T> ends(Date endingDate, DateGetter<T> getter) {
+        if (endingDate == null) return this;
+
+        filteredList = filteredList
+                .stream()
+                .filter(
+                        (T t) -> {
+                            return !(getter.getDate(t).compareTo(endingDate) < 0); //todo test
+                        })
+                .collect(Collectors.toList());
+        return this;
+    }
+
     @FunctionalInterface
     public interface StringGetter<T> {
         String getString(T obj);
