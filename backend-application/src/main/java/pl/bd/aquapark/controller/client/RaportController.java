@@ -1,7 +1,6 @@
 package pl.bd.aquapark.controller.client;
 
 import lombok.Data;
-import org.graalvm.compiler.nodes.calc.IntegerDivRemNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,7 +43,7 @@ public class RaportController {
 
     @GetMapping("/management")
     public ResponseEntity<ManagementReport> getManagementReport(HttpServletRequest httpServletRequest, @RequestParam Date start, @RequestParam Date end) {
-        if (!httpServletRequest.isUserInRole(Roles.ANALITIC.toString())) {
+        if (!httpServletRequest.isUserInRole(Roles.ANALYTIC.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         List<Date> dates = DateService.generateDates(start, end);
@@ -67,7 +66,7 @@ public class RaportController {
 
     @GetMapping("/operational")
     public ResponseEntity<OperationalReport> getOperationalReport(HttpServletRequest httpServletRequest, @RequestParam Date start, @RequestParam Date end) {
-        if (!httpServletRequest.isUserInRole(Roles.ANALITIC.toString())) {
+        if (!httpServletRequest.isUserInRole(Roles.ANALYTIC.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         List<Date> dates = DateService.generateDates(start, end);

@@ -49,9 +49,9 @@ public class ClientController {
 
     @GetMapping
     public ResponseEntity<List<User>> getUsers(
-            @RequestParam String firstName,
-            @RequestParam String lastName,
-            @RequestParam String pesel,
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName,
+            @RequestParam(required = false) String pesel,
             HttpServletRequest request) {
         if (!request.isUserInRole(Roles.SELLER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

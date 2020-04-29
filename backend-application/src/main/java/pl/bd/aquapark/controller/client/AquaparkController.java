@@ -1,10 +1,9 @@
 package pl.bd.aquapark.controller.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.bd.aquapark.dao.*;
 import pl.bd.aquapark.dto.AquaparkAttractionDto;
 import pl.bd.aquapark.dto.PriceListItemDto;
@@ -13,10 +12,12 @@ import pl.bd.aquapark.repository.GenderRepository;
 import pl.bd.aquapark.repository.PriceListRepository;
 import pl.bd.aquapark.repository.RoleRepository;
 import pl.bd.aquapark.service.DateService;
+import pl.bd.aquapark.service.FilteringService;
 import pl.bd.aquapark.service.GetAllService;
 import pl.bd.aquapark.service.PriceListService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -46,7 +47,7 @@ public class AquaparkController {
 
     @GetMapping(value = "/pricelist")
     public ResponseEntity<List<PriceListItemDto>> getPriceListItems() {
-        PriceList priceList = PriceListService.getPriceListForDate(priceListRepository, DateService.utilDateToSqlDate(new java.util.Date()));
+        PriceList priceList = PriceListService.getPriceListForDate(priceListRepository, DateService.getCurrentDay());
         return ResponseEntity.ok(priceList
             .getPriceListItems()
             .stream()
@@ -56,8 +57,9 @@ public class AquaparkController {
     }
 
     @GetMapping(value = "/attractions")
-    public ResponseEntity<List<AquaparkAttractionDto>> getAttractions() {
+    public ResponseEntity<List<AquaparkAttractionDto>> getAttractions(@RequestParam(required = false) String name) {
         List<AquaparkAttraction> aquaparkAttractions = GetAllService.getAll(attractionRepository);
+        aquaparkAttractions = new FilteringService<>(aquaparkAttractions).contains(name, AquaparkAttraction::getName).getFiltered();
         return ResponseEntity.ok(
           aquaparkAttractions.stream()
             .map(AquaparkAttractionDto::fromAquaparkAttraction)
@@ -65,4 +67,12 @@ public class AquaparkController {
         );
     }
 
+    @GetMapping(value = "/attractions/{id}")
+    public ResponseEntity<AquaparkAttractionDto> getAttraction(@PathVariable(name = "id") Long id) {
+        Optional<AquaparkAttraction> aquaparkAttraction = attractionRepository.findById(id);
+        if (aquaparkAttraction.isPresent()) {
+            return ResponseEntity.ok(AquaparkAttractionDto.fromAquaparkAttraction(aquaparkAttraction.get()));
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 }
