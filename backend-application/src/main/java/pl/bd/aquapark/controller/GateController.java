@@ -14,11 +14,15 @@ import pl.bd.aquapark.dao.*;
 import pl.bd.aquapark.dto.GateInformationDto;
 import pl.bd.aquapark.repository.*;
 import pl.bd.aquapark.service.DateService;
+import pl.bd.aquapark.service.GetAllService;
 import pl.bd.aquapark.service.PricingService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Time;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/gate")
@@ -58,6 +62,8 @@ public class GateController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("no pricing for this attraction was found");
         }
 
+        //todo zrobić sprawdzenie czy wchodzi na drugą atrakcję bez wychodzenia - nielegalny ruch!!
+
         Visit activeVisit = identificator.getActiveVisit();
 
         AquaparkAttractionGateEvent event = new AquaparkAttractionGateEvent();
@@ -75,6 +81,52 @@ public class GateController {
         usageRepository.save(usage);
 
         return ResponseEntity.ok("succesfully entered");
+    }
+
+    @PostMapping(value = "exit")
+    public ResponseEntity<String> exitEvent(HttpServletRequest servletRequest, @RequestBody GateInformationDto gateInfo) {
+        SharedCheckerResponse response = check(servletRequest, gateInfo);
+        if (response.getResponse() != null) {
+            return response.getResponse();
+        }
+        AquaparkAttractionGate gate = response.getGate();
+        ClientIdentificator identificator = response.getIdentificator();
+
+        if (!identificator.getIsInUse()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("identificator is not in use!");
+        }
+
+        Visit activeVisit = identificator.getActiveVisit();
+
+        AquaparkAttractionGateEvent event = new AquaparkAttractionGateEvent();
+        event.setEntering(false);
+        event.setDate(DateService.getCurrentDay());
+        event.setAquaparkAttractionGate(gate);
+        event.setClientIdentificator(identificator);
+        AquaparkAttractionGateEvent savedEvent = eventRepository.save(event);
+
+        //znalezienie aktualnego usage
+        List<AquaparkAttractionUsage> usages = GetAllService.getAll(usageRepository);
+        List<AquaparkAttractionUsage> usagesForThisAttractionAndVisitAndNotEnded = usages.stream()
+                .filter((AquaparkAttractionUsage us) -> us.getVisit().equals(activeVisit))
+                .filter((AquaparkAttractionUsage us) -> us.getAquaparkAttraction().equals(gate.getAquaparkAttraction()))
+                .filter((AquaparkAttractionUsage us) -> us.getLeavingEvent() == null).collect(Collectors.toList());
+
+        int size = usagesForThisAttractionAndVisitAndNotEnded.size();
+        if (size != 1) {
+            if (size == 0) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("no usages active! Did you really enter any attraction?");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("too many usages active! Did you enter too many attractions without leaving?");
+            }
+        }
+
+
+        AquaparkAttractionUsage usage = new AquaparkAttractionUsage();
+        usage.setLeavingEvent(savedEvent);
+        usageRepository.save(usage);
+
+        return ResponseEntity.ok("succesfully exited");
     }
 
     private SharedCheckerResponse check(HttpServletRequest servletRequest, GateInformationDto gateInfo) {
