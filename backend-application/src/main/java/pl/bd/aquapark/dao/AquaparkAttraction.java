@@ -30,5 +30,9 @@ class AquaparkAttraction {
 
     @OneToMany
     @JoinColumn(name = "attractionId")
+    private List<PriceListItem> priceListItems;
+
+    @OneToMany
+    @JoinColumn(name = "attractionId")
     private List<AquaparkAttractionMaintenance> aquaparkAttractionMaintenances;
 }
