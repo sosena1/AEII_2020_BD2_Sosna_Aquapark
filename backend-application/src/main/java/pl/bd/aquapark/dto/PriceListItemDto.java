@@ -20,7 +20,7 @@ class PriceListItemDto {
     private boolean weekendOnly;
     private boolean childOnly;
     private boolean seniorOnly;
-    private String attractionName; //todo
+    private String attractionName;
 
 
     public static PriceListItemDto fromPriceListItem(PriceListItem pli) {
@@ -33,7 +33,7 @@ class PriceListItemDto {
                 con.getWeekendOnly(),
                 con.getChildOnly(),
                 con.getSeniorOnly(),
-                "TODO"
+                pli.getAquaparkAttraction().getName()
         );
     }
 }

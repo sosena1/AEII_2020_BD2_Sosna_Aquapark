@@ -30,6 +30,9 @@ class PriceListItem {
     @ManyToOne
     private PriceList priceList;
 
+    @ManyToOne
+    private AquaparkAttraction aquaparkAttraction;
+
     @OneToMany
     @JoinColumn(name = "usageId")
     private List<AquaparkAttractionUsage> aquaparkAttractionUsage;
