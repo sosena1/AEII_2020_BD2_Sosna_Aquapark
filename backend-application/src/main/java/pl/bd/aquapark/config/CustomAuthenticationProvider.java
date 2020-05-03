@@ -17,7 +17,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        return new UsernamePasswordAuthenticationToken(name, password, new ArrayList<>());
+        //todo
+        return new UsernamePasswordAndIdToken(name, password, 0, new ArrayList<>());
 
         /*
         if (authenticationService.lazyAuthenticate(name, password)) {
