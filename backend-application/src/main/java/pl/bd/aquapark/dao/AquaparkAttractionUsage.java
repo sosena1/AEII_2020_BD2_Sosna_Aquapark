@@ -3,6 +3,9 @@ package pl.bd.aquapark.dao;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.sql.Time;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -33,4 +36,13 @@ class AquaparkAttractionUsage {
     private AquaparkAttractionGateEvent leavingEvent;
 
 
+    public long getTimeSpendInMinutes() {
+        Time enteringTime = enteringEvent.getTime();
+        Time leavingTime = leavingEvent.getTime();
+        LocalTime from = leavingTime.toLocalTime();
+        LocalTime to = enteringTime.toLocalTime();
+
+        Duration d = Duration.between(from, to);
+        return d.toMinutes();
+    }
 }
