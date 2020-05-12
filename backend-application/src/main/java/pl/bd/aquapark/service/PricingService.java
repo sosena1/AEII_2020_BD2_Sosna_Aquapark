@@ -2,6 +2,7 @@ package pl.bd.aquapark.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.bd.aquapark.dao.*;
+import pl.bd.aquapark.repository.ConditionRepository;
 import pl.bd.aquapark.repository.PriceListRepository;
 
 import java.math.BigDecimal;
@@ -21,7 +22,8 @@ public class PricingService {
                 return priceList;
             }
         }
-        return priceLists.get(0); //nie powinno sie zdarzyc!!!
+        System.err.println("No pricelist for current date!");
+        return priceLists.get(0);
     }
 
     public static PriceListItem priceListItemForSettings(PriceListRepository priceListRepository, User user, AquaparkAttraction aquaparkAttraction, Date date) {
@@ -74,5 +76,22 @@ public class PricingService {
         }
 
         return bestPrice;
+    }
+
+    public static Conditions getOrCreateCondition(ConditionRepository repository, boolean childOnly, boolean seniorOnly, boolean weekendOnly) {
+        List<Conditions> conditions = GetAllService.getAll(repository);
+        for (Conditions condit : conditions) {
+            if (condit.getWeekendOnly() == weekendOnly
+            && condit.getChildOnly() == childOnly
+            && condit.getSeniorOnly() == seniorOnly) {
+                return condit;
+            }
+        }
+        Conditions conditions1 = new Conditions();
+        conditions1.setSeniorOnly(seniorOnly);
+        conditions1.setChildOnly(childOnly);
+        conditions1.setWeekendOnly(weekendOnly);
+
+        return repository.save(conditions1);
     }
 }
