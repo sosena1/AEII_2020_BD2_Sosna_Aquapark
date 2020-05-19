@@ -19,9 +19,11 @@ public @Data class AquaparkAttractionMaintenance {
     @Column(name = "date")
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeid")
     private Employee employee;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attractionid", insertable = false, updatable = false)
     private AquaparkAttraction aquaparkAttraction;
 }
