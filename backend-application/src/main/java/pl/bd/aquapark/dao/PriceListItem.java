@@ -7,12 +7,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "PriceListItem")
+@Table(name = "pricelistitem")
 public @Data
 class PriceListItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "priceListItemId")
+    @Column(name = "pricelistitemid")
     private Long priceListItemId;
 
     @Column(name = "name")
@@ -34,6 +34,6 @@ class PriceListItem {
     private AquaparkAttraction aquaparkAttraction;
 
     @OneToMany
-    @JoinColumn(name = "usageId")
+    @JoinColumn(name = "usageid")
     private List<AquaparkAttractionUsage> aquaparkAttractionUsage;
 }

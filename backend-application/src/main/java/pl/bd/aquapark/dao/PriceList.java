@@ -7,18 +7,18 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "PriceList")
+@Table(name = "pricelist")
 public @Data class PriceList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "priceListId")
+    @Column(name = "pricelistid")
     private Long priceListId;
 
-    @Column(name = "validityStartDate")
+    @Column(name = "validitystartdate")
     private Date validityStartDate;
 
     @OneToMany
-    @JoinColumn(name = "priceListId")
+    @JoinColumn(name = "pricelistid")
     private List<PriceListItem> priceListItems;
 
     @ManyToOne

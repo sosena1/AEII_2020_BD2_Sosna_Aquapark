@@ -87,6 +87,9 @@ public class AquaparkController {
 
     @PostMapping(value = "/pricelist")
     public ResponseEntity setPriceList(@RequestBody SetPriceListDto setPriceListDto, HttpServletRequest servletRequest) {
+        if (servletRequest.getUserPrincipal() == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
         if (!servletRequest.isUserInRole(Roles.PRICELIST_MAINTAINER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

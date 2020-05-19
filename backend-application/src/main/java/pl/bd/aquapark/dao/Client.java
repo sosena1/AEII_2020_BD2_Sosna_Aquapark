@@ -7,15 +7,15 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Client")
+@Table(name = "client")
 public @Data
 class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "clientId", nullable = false)
+    @Column(name = "clientid", nullable = false)
     private Long clientId;
 
-    @Column(name = "ownsAccount")
+    @Column(name = "ownsaccount")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean ownsAccount;
 
@@ -23,7 +23,7 @@ class Client {
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "clientId")
+    @JoinColumn(name = "clientid")
     private List<Visit> visits;
 
 }

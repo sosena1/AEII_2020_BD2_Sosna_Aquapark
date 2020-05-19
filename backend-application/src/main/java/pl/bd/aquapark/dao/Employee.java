@@ -7,31 +7,31 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "Employee")
+@Table(name = "employee")
 public @Data
 class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employeeId")
+    @Column(name = "employeeid")
     private Long employeeId;
 
     @OneToOne(mappedBy = "employee")
     private User user;
 
     @OneToMany
-    @JoinColumn(name = "employeeId")
+    @JoinColumn(name = "employeeid")
     private List<PriceList> priceLists;
 
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(
-            name = "Role_has_Employee",
-            joinColumns = {@JoinColumn(name = "employeeId")},
-            inverseJoinColumns = {@JoinColumn(name = "roleId")}
+            name = "role_has_employee",
+            joinColumns = {@JoinColumn(name = "employeeid")},
+            inverseJoinColumns = {@JoinColumn(name = "roleid")}
     )
     private Set<Role> roles;
 
     @OneToMany
-    @JoinColumn(name = "employeeId")
+    @JoinColumn(name = "employeeid")
     private List<AquaparkAttractionMaintenance> aquaparkAttractionMaintenances;
 
 }

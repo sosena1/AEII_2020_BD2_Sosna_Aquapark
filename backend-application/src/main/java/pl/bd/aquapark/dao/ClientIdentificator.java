@@ -8,25 +8,25 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "ClientIdentificator")
+@Table(name = "clientidentificator")
 public @Data
 class ClientIdentificator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "identificatorId")
+    @Column(name = "identificatorid")
     private Long identificatorId;
 
-    @Column(name = "isInUse")
+    @Column(name = "isinuse")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean isInUse;
 
     @OneToMany
-    @JoinColumn(name = "identificatorId")
+    @JoinColumn(name = "identificatorid")
     private List<Visit> visits;
 
     @OneToMany
-    @JoinColumn(name = "identificatorId")
+    @JoinColumn(name = "identificatorid")
     private List<AquaparkAttractionGateEvent> aquaparkAttractionGateEvents;
 
     public Visit getActiveVisit() {

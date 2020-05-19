@@ -6,11 +6,11 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "AquaparkAttractionMaintenance")
+@Table(name = "aquaparkattractionmaintenance")
 public @Data class AquaparkAttractionMaintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "attractionMaintenanceId")
+    @Column(name = "attractionmaintenanceid")
     private Long attractionMaintenanceId;
 
     @Column(name = "description")
