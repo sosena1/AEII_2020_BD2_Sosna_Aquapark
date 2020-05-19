@@ -1,6 +1,7 @@
 package pl.bd.aquapark.dao;
 
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.List;
@@ -20,19 +21,19 @@ class AquaparkAttraction {
     @Column(name = "name")
     private String name;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "attractionid")
     private List<AquaparkAttractionGate> aquaparkAttractionGates;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "attractionid")
     private List<AquaparkAttractionUsage> aquaparkAttractionUsages;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "attractionid")
     private List<PriceListItem> priceListItems;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "attractionid")
     private List<AquaparkAttractionMaintenance> aquaparkAttractionMaintenances;
 }
