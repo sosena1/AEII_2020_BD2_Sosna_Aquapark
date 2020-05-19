@@ -8,15 +8,15 @@ import java.sql.Date;
 import java.sql.Time;
 
 @Entity
-@Table(name = "AquaparkAttractionGateEvent")
+@Table(name = "aquaparkattractiongateevent")
 public @Data
 class AquaparkAttractionGateEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "eventId")
+    @Column(name = "eventid")
     private Long eventId;
 
-    @Column(name = "isEntering")
+    @Column(name = "isentering")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private boolean isEntering;
 

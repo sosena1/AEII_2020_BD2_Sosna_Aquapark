@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/test").permitAll().and() //pozwoli wejść na te endpointy bez logowania
+                .authorizeRequests().antMatchers(HttpMethod.GET, "/aquapark").permitAll().and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic()

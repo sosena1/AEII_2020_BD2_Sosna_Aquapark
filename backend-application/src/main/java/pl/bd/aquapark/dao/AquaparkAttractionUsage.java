@@ -9,13 +9,13 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Entity
-@Table(name = "AquaparkAttractionUsage")
+@Table(name = "aquaparkattractionusage")
 public @Data
 class AquaparkAttractionUsage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "usageId")
+    @Column(name = "usageid")
     private Long usageId;
 
     @ManyToOne
@@ -28,11 +28,11 @@ class AquaparkAttractionUsage {
     private PriceListItem priceListItem;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "enteringEventId", referencedColumnName = "eventId")
+    @JoinColumn(name = "enteringeventid", referencedColumnName = "eventid")
     private AquaparkAttractionGateEvent enteringEvent;
 
     @OneToOne(optional = true)
-    @JoinColumn(name = "leavingEventId", referencedColumnName = "eventId")
+    @JoinColumn(name = "leavingeventid", referencedColumnName = "eventid")
     private AquaparkAttractionGateEvent leavingEvent;
 
 
