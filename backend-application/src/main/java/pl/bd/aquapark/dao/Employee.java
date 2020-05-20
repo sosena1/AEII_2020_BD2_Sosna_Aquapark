@@ -15,14 +15,15 @@ class Employee {
     @Column(name = "employeeid")
     private Long employeeId;
 
-    @OneToOne(mappedBy = "employee")
+    @OneToOne
+    @JoinColumn(name = "userid")
     private User user;
 
     @OneToMany
     @JoinColumn(name = "employeeid")
     private List<PriceList> priceLists;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "role_has_employee",
             joinColumns = {@JoinColumn(name = "employeeid")},
@@ -34,4 +35,10 @@ class Employee {
     @JoinColumn(name = "employeeid")
     private List<AquaparkAttractionMaintenance> aquaparkAttractionMaintenances;
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId=" + employeeId +
+                '}';
+    }
 }

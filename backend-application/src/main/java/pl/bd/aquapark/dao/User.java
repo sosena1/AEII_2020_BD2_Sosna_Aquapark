@@ -1,7 +1,9 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -53,14 +55,60 @@ public class User {
     @Column(name = "birthdate", nullable = true)
     private Date birthDate;
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "userid", referencedColumnName = "clientId")
+    @OneToOne(mappedBy = "user")
+    @Getter(onMethod = @__( @JsonIgnore))
     private Client client;
 
-    @OneToOne(optional = true)
-    @JoinColumn(name = "userid", referencedColumnName = "employeeId")
+    @OneToOne(mappedBy = "user")
+    @Getter(onMethod = @__( @JsonIgnore))
     private Employee employee;
 
     @ManyToOne
+    @JoinColumn(name = "genderid")
     private Gender gender;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (userId != null ? !userId.equals(user.userId) : user.userId != null) return false;
+        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
+        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
+        if (address != null ? !address.equals(user.address) : user.address != null) return false;
+        if (contactNumber != null ? !contactNumber.equals(user.contactNumber) : user.contactNumber != null)
+            return false;
+        if (otherInformation != null ? !otherInformation.equals(user.otherInformation) : user.otherInformation != null)
+            return false;
+        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
+        if (password != null ? !password.equals(user.password) : user.password != null) return false;
+        if (pesel != null ? !pesel.equals(user.pesel) : user.pesel != null) return false;
+        if (birthDate != null ? !birthDate.equals(user.birthDate) : user.birthDate != null) return false;
+        return gender != null ? gender.equals(user.gender) : user.gender == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = userId != null ? userId.hashCode() : 0;
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (address != null ? address.hashCode() : 0);
+        result = 31 * result + (contactNumber != null ? contactNumber.hashCode() : 0);
+        result = 31 * result + (otherInformation != null ? otherInformation.hashCode() : 0);
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (pesel != null ? pesel.hashCode() : 0);
+        result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                '}';
+    }
 }

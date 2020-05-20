@@ -43,7 +43,7 @@ public class RaportController {
 
     @GetMapping("/management")
     public ResponseEntity<ManagementReport> getManagementReport(HttpServletRequest httpServletRequest, @RequestParam Date start, @RequestParam Date end) {
-        if (!httpServletRequest.isUserInRole(Roles.ANALYTIC.toString())) {
+        if (!httpServletRequest.isUserInRole(Roles.ANALYST.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         List<Date> dates = DateService.generateDates(start, end);
@@ -66,7 +66,7 @@ public class RaportController {
 
     @GetMapping("/operational")
     public ResponseEntity<OperationalReport> getOperationalReport(HttpServletRequest httpServletRequest, @RequestParam Date start, @RequestParam Date end) {
-        if (!httpServletRequest.isUserInRole(Roles.ANALYTIC.toString())) {
+        if (!httpServletRequest.isUserInRole(Roles.ANALYST.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         List<Date> dates = DateService.generateDates(start, end);
