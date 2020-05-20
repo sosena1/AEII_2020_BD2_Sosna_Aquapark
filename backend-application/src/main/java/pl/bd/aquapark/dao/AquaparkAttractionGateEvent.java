@@ -1,6 +1,8 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -27,16 +29,23 @@ class AquaparkAttractionGateEvent {
     private Time time;
 
     @ManyToOne
+    @JoinColumn(name = "identificatorid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private ClientIdentificator clientIdentificator;
 
     @ManyToOne
+    @JoinColumn(name = "gateid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private AquaparkAttractionGate aquaparkAttractionGate;
 
+    @Getter(onMethod = @__( @JsonIgnore))
     @OneToOne(mappedBy = "enteringEvent")
     private AquaparkAttractionUsage aquaparkAttractionUsageEntering;
 
+    @Getter(onMethod = @__( @JsonIgnore))
     @OneToOne(mappedBy = "leavingEvent")
     private AquaparkAttractionUsage aquaparkAttractionUsageLeaving;
+
 
     public AquaparkAttractionUsage getCorrectEvent() {
         if (isEntering) {

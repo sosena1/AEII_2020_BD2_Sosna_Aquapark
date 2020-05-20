@@ -1,6 +1,8 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -29,5 +31,6 @@ class Conditions {
 
     @OneToMany
     @JoinColumn(name = "conditionalid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<PriceListItem> priceListItemList;
 }

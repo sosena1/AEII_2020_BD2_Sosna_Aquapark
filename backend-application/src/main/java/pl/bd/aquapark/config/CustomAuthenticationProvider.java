@@ -75,6 +75,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                         roleList.add(Roles.PRICELIST_MAINTAINER);
                         break;
                     case "superuser":
+                        roleList.add(Roles.SUPER_USER);
                     case "owner":
                         roleList.add(Roles.CASHIER);
                         roleList.add(Roles.GATE);

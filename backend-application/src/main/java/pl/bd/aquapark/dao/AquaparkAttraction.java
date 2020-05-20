@@ -1,6 +1,8 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
@@ -23,17 +25,21 @@ class AquaparkAttraction {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "attractionid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<AquaparkAttractionGate> aquaparkAttractionGates;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "attractionid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<AquaparkAttractionUsage> aquaparkAttractionUsages;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "attractionid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<PriceListItem> priceListItems;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "attractionid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<AquaparkAttractionMaintenance> aquaparkAttractionMaintenances;
 }

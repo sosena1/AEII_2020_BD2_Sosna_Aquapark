@@ -1,6 +1,8 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.sql.Time;
@@ -19,24 +21,31 @@ class AquaparkAttractionUsage {
     private Long usageId;
 
     @ManyToOne
+    @JoinColumn(name = "visitid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private Visit visit;
 
     @ManyToOne
+    @JoinColumn(name = "attractionid")
+    @Getter(onMethod = @__( @JsonIgnore)) //can be seen in pricelistitem
     private AquaparkAttraction aquaparkAttraction;
 
     @ManyToOne
+    @JoinColumn(name = "pricelistitemid")
     private PriceListItem priceListItem;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "enteringeventid", referencedColumnName = "eventid")
+    @Getter(onMethod = @__( @JsonIgnore))
+    @JoinColumn(name = "enteringeventid")
     private AquaparkAttractionGateEvent enteringEvent;
 
     @OneToOne(optional = true)
-    @JoinColumn(name = "leavingeventid", referencedColumnName = "eventid")
+    @Getter(onMethod = @__( @JsonIgnore))
+    @JoinColumn(name = "leavingeventid")
     private AquaparkAttractionGateEvent leavingEvent;
 
-
     public long getTimeSpendInMinutes() {
+        if (leavingEvent == null) return -1;
         Time enteringTime = enteringEvent.getTime();
         Time leavingTime = leavingEvent.getTime();
         LocalTime from = leavingTime.toLocalTime();
@@ -44,5 +53,14 @@ class AquaparkAttractionUsage {
 
         Duration d = Duration.between(from, to);
         return d.toMinutes();
+    }
+
+    public Time getEnteringTime() {
+        return enteringEvent.getTime();
+    }
+
+    public Time getLeavingTime() {
+        if (leavingEvent == null) return null;
+        return leavingEvent.getTime();
     }
 }
