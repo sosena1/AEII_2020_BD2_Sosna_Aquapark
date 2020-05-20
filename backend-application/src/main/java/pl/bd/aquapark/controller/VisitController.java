@@ -42,7 +42,7 @@ public class VisitController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
-        if (visitOptional.get().getClient().getUser().getUserName().equals(request.getUserPrincipal().getName())) {
+        if (request.isUserInRole(Roles.SUPER_USER.toString()) || visitOptional.get().getClient().getUser().getUserName().equals(request.getUserPrincipal().getName())) {
             return ResponseEntity.ok(visitOptional.get());
         }
 

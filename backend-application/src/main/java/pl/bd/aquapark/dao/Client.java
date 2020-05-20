@@ -1,6 +1,8 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -25,6 +27,7 @@ class Client {
 
     @OneToMany
     @JoinColumn(name = "clientid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<Visit> visits;
 
     @Override

@@ -46,6 +46,7 @@ public class User {
 
     @Size(max = 45, message = "password can be up to 45 characters long")
     @Column(name = "password", nullable = true)
+    @Getter(onMethod = @__( @JsonIgnore))
     private String password;
 
     @Size(max = 45, message = "pesel can be up to 45 characters long")

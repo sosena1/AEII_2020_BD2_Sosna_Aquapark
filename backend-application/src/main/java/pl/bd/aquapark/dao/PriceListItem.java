@@ -1,6 +1,8 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -30,6 +32,7 @@ class PriceListItem {
 
     @ManyToOne
     @JoinColumn(name = "pricelistid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private PriceList priceList;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,5 +41,6 @@ class PriceListItem {
 
     @OneToMany
     @JoinColumn(name = "usageid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<AquaparkAttractionUsage> aquaparkAttractionUsage;
 }

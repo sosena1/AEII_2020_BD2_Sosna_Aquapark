@@ -1,6 +1,8 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -23,12 +25,15 @@ class ClientIdentificator {
 
     @OneToMany
     @JoinColumn(name = "identificatorid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<Visit> visits;
 
     @OneToMany
     @JoinColumn(name = "identificatorid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<AquaparkAttractionGateEvent> aquaparkAttractionGateEvents;
 
+    @JsonIgnore
     public Visit getActiveVisit() {
         List<Visit> unendedVisits = visits.stream()
                 .filter((Visit v) -> v.getEndTime() == null)

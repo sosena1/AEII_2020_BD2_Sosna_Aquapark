@@ -30,6 +30,7 @@ class Visit {
     private BigDecimal value;
 
     @ManyToOne
+    @JoinColumn(name = "clientid")
     private Client client;
 
     @OneToMany
@@ -37,5 +38,6 @@ class Visit {
     private List<AquaparkAttractionUsage> aquaparkAttractionUsages;
 
     @ManyToOne
+    @JoinColumn(name = "identificatorid")
     private ClientIdentificator clientIdentificator;
 }

@@ -9,7 +9,8 @@ public enum Roles implements GrantedAuthority {
     ANALYST("Analyst"),
     MAINTAINER("Cleaner"),
     PRICELIST_MAINTAINER("PriceChanger"),
-    CASHIER("Cashier");
+    CASHIER("Cashier"),
+    SUPER_USER("SuperUser");
 
 
     private final String role;
