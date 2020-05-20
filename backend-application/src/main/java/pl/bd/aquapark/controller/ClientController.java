@@ -2,8 +2,6 @@ package pl.bd.aquapark.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +17,6 @@ import pl.bd.aquapark.service.GetAllService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -39,9 +36,9 @@ public class ClientController {
     ClientRepository clientRepository;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id, HttpServletRequest request) {
+    public ResponseEntity getUser(@PathVariable Long id, HttpServletRequest request) {
         boolean authorized = false;
-        if (request.isUserInRole(Roles.SELLER.toString())) {
+        if (request.isUserInRole(Roles.CASHIER.toString())) {
             authorized = true;
         }
         Optional<User> user = userRepository.findById(id);
@@ -49,10 +46,10 @@ public class ClientController {
             authorized = true;
         }
         if (!authorized) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You need to be user with this ID or needs to be in role CASHIER to view this information");
         }
         if (!user.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No such user");
         }
         return ResponseEntity.ok(user.get());
     }
@@ -63,7 +60,7 @@ public class ClientController {
             @RequestParam(required = false) String lastName,
             @RequestParam(required = false) String pesel,
             HttpServletRequest request) {
-        if (!request.isUserInRole(Roles.SELLER.toString())) {
+        if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         List<User> users = GetAllService.getAll(userRepository);

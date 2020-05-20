@@ -25,12 +25,15 @@ class PriceListItem {
     private String description;
 
     @ManyToOne
+    @JoinColumn(name = "conditionalid")
     private Conditions conditions;
 
     @ManyToOne
+    @JoinColumn(name = "pricelistid")
     private PriceList priceList;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attractionid")
     private AquaparkAttraction aquaparkAttraction;
 
     @OneToMany

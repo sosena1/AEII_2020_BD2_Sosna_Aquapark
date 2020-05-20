@@ -19,11 +19,18 @@ class Client {
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean ownsAccount;
 
-    @OneToOne(mappedBy = "client")
+    @OneToOne
+    @JoinColumn(name = "userid")
     private User user;
 
     @OneToMany
     @JoinColumn(name = "clientid")
     private List<Visit> visits;
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                "clientId=" + clientId +
+                '}';
+    }
 }

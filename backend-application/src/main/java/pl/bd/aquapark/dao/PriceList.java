@@ -21,6 +21,7 @@ public @Data class PriceList {
     @JoinColumn(name = "pricelistid")
     private List<PriceListItem> priceListItems;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeid")
     private Employee employee;
 }

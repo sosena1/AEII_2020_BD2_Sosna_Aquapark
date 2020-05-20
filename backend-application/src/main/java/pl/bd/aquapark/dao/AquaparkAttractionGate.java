@@ -19,6 +19,7 @@ class AquaparkAttractionGate {
     private List<AquaparkAttractionGateEvent> aquaparkAttractionGateEvents;
 
     @ManyToOne
+    @JoinColumn(name = "attractionid")
     private AquaparkAttraction aquaparkAttraction;
 
 }

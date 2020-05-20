@@ -51,7 +51,7 @@ public class VisitController {
 
     @PostMapping(value = "/start_anonymous_visit")
     public ResponseEntity startAnonymousVisit(@RequestBody AnonymousVisitDto anonVisit, HttpServletRequest request) {
-        if (!request.isUserInRole(Roles.SELLER.toString())) {
+        if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
@@ -87,7 +87,7 @@ public class VisitController {
 
     @PostMapping(value = "/start_visit")
     public ResponseEntity startVisit(@RequestBody VisitDto visitDto, HttpServletRequest request) {
-        if (!request.isUserInRole(Roles.SELLER.toString())) {
+        if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
@@ -125,7 +125,7 @@ public class VisitController {
 
     @PostMapping(value = "/end_visit")
     public ResponseEntity endVisit(@RequestBody EndVisitDto endVisitDto, HttpServletRequest request) {
-        if (!request.isUserInRole(Roles.SELLER.toString())) {
+        if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
