@@ -29,6 +29,7 @@ insert into GENDER (genderId, genderName) values (0, 'Female');
 insert into GENDER (genderId, genderName) values (1, 'Male');
 insert into GENDER (genderId, genderName) values (2, 'N/A');
 
+<<<<<<< HEAD
 insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (1, 'Mariel', 'Elener', '3 Canary Place', '749084822', 'Perfect swimmer', 'Landon', 'fvVbgTDC492', '93139441283', '1929-05-12', 1);
 insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (2, 'Mic', 'Meert', '490 Gale Avenue', '930174978', 'Perfect swimmer', 'Rodolfo', 'NvcdTBDF729', '57557309332', '1994-05-13', 1);
 insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (3, 'Aloin', 'Hew', '755 Duke Terrace', '569692874', 'Swims quite well', 'Theo', 'coeWasgIuP072', '01057686270', '1971-08-10', 1);
@@ -39,6 +40,18 @@ insert into USER (userId, firstName, lastName, address, contactNumber, otherInfo
 insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (8, 'Tamara', 'Gibben', '82 Hallows Drive', '796073444', 'Perfect swimmer', 'Mellie', 'EgNpYAvDao101', '65283193734', '1956-03-01', 0);
 insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (9, 'Mead', 'Sowle', '3 High Crossing Junction', '625283530', 'Perfect swimmer', 'Newton', 'lRHyXID467', '40087205549', '1961-06-18', 1);
 insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (10, 'Ramsey', 'Randal', '86 Forster Pass', '414392355', 'Cannot swim', 'Charmaine', 'ryCnN277', '08352120086', '2008-01-23', 1);
+=======
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (1, 'Mariel', 'Elener', '3 Canary Place', '749084822', '1i395p30KU0LlQNo77t1', 'Landon', 'fvVbgTDC492', '93139441283', '1929-05-12', 1);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (2, 'Mic', 'Meert', '490 Gale Avenue', '930174978', '6E3L8j9452npx88rh144', 'Rodolfo', 'NvcdTBDF729', '57557309332', '1994-05-13', 1);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (3, 'Aloin', 'Hew', '755 Duke Terrace', '569692874', '33P4BSaS1r8cv1614104', 'Theo', 'coeWasgIuP072', '01057686270', '1971-08-10', 1);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (4, 'Kassi', 'McCuaig', '75 Elka Lane', '056062630', '5RCpr3al974Va2Ko7685', 'Zonia', 'SXfQ173', '72813884844', '2019-04-01', 0);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (5, 'Kassey', 'Kobierski', '7280 Russell Drive', '908392332', '363977F1j7L3k6B7dsB3', 'Sherman', 'sdYb203', '20187632915', '1988-09-02', 0);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (6, 'Wain', 'Foss', '861 Upham Drive', '179955264', 'F5B51d62WRT7V9047F28', 'Cindie', 'oplzSD747', '23186618323', '1921-08-04', 1);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (7, 'Test', 'Test', 'Test', '619535243', 'TEST acc', 'TEST', 'TEST', '0000000000', '2018-07-16', 2);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (8, 'Tamara', 'Gibben', '82 Hallows Drive', '796073444', 'XmOs2gg87Ks7iv8AVkZP', 'Mellie', 'EgNpYAvDao101', '65283193734', '1956-03-01', 0);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (9, 'Mead', 'Sowle', '3 High Crossing Junction', '625283530', '5x139Iv916gW7123F28D', 'Newton', 'lRHyXID467', '40087205549', '1961-06-18', 1);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (10, 'Ramsey', 'Randal', '86 Forster Pass', '414392355', '8XM98NCEzce74O9X5B0l', 'Charmaine', 'ryCnN277', '08352120086', '2008-01-23', 1);
+>>>>>>> 6111cc1bc295b3f78599c46007d8f6807eb0a347
 
 insert into EMPLOYEE (employeeId, userId) values (1, 5);
 insert into EMPLOYEE (employeeId, userId) values (2, 7);
