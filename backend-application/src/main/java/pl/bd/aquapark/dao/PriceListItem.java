@@ -1,18 +1,20 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "PriceListItem")
+@Table(name = "pricelistitem")
 public @Data
 class PriceListItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "priceListItemId")
+    @Column(name = "pricelistitemid")
     private Long priceListItemId;
 
     @Column(name = "name")
@@ -25,15 +27,20 @@ class PriceListItem {
     private String description;
 
     @ManyToOne
+    @JoinColumn(name = "conditionalid")
     private Conditions conditions;
 
     @ManyToOne
+    @JoinColumn(name = "pricelistid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private PriceList priceList;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attractionid")
     private AquaparkAttraction aquaparkAttraction;
 
     @OneToMany
-    @JoinColumn(name = "usageId")
+    @JoinColumn(name = "usageid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<AquaparkAttractionUsage> aquaparkAttractionUsage;
 }

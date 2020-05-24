@@ -1,38 +1,45 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "AquaparkAttraction")
+@Table(name = "aquaparkattraction")
 public @Data
 class AquaparkAttraction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "attractionId")
+    @Column(name = "attractionid")
     private Long attractionId;
 
-    @Column(name = "maxUsers")
+    @Column(name = "maxusers")
     private Long maxUsers;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "attractionId")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attractionid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<AquaparkAttractionGate> aquaparkAttractionGates;
 
-    @OneToMany
-    @JoinColumn(name = "attractionId")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attractionid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<AquaparkAttractionUsage> aquaparkAttractionUsages;
 
-    @OneToMany
-    @JoinColumn(name = "attractionId")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attractionid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<PriceListItem> priceListItems;
 
-    @OneToMany
-    @JoinColumn(name = "attractionId")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attractionid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<AquaparkAttractionMaintenance> aquaparkAttractionMaintenances;
 }

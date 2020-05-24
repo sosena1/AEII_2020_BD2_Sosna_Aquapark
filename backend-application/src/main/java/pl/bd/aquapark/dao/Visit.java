@@ -1,6 +1,8 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -9,33 +11,36 @@ import java.sql.Time;
 import java.util.List;
 
 @Entity
-@Table(name = "Visit")
+@Table(name = "visit")
 public @Data
 class Visit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "visitId", nullable = false)
+    @Column(name = "visitid", nullable = false)
     private Long visitId;
 
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @Column(name = "startTime", nullable = false)
+    @Column(name = "starttime", nullable = false)
     private Time startTime;
 
-    @Column(name = "endTime", nullable = false)
+    @Column(name = "endtime", nullable = false)
     private Time endTime;
 
     @Column(name = "value", nullable = false)
     private BigDecimal value;
 
     @ManyToOne
+    @JoinColumn(name = "clientid")
     private Client client;
 
     @OneToMany
-    @JoinColumn(name = "visitId")
+    @JoinColumn(name = "visitid")
     private List<AquaparkAttractionUsage> aquaparkAttractionUsages;
 
     @ManyToOne
+    @JoinColumn(name = "identificatorid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private ClientIdentificator clientIdentificator;
 }

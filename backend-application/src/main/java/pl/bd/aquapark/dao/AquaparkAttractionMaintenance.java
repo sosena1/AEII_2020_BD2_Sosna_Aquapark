@@ -6,11 +6,11 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "AquaparkAttractionMaintenance")
+@Table(name = "aquaparkattractionmaintenance")
 public @Data class AquaparkAttractionMaintenance {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "attractionMaintenanceId")
+    @Column(name = "attractionmaintenanceid")
     private Long attractionMaintenanceId;
 
     @Column(name = "description")
@@ -19,9 +19,11 @@ public @Data class AquaparkAttractionMaintenance {
     @Column(name = "date")
     private Date date;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employeeid")
     private Employee employee;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attractionid", insertable = false, updatable = false)
     private AquaparkAttraction aquaparkAttraction;
 }

@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Date;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -16,6 +17,7 @@ public class PricingService {
 
     public static PriceList getPriceListForDate(PriceListRepository priceListRepository, Date date) {
         List<PriceList> priceLists = GetAllService.getAll(priceListRepository);
+        priceLists = new ArrayList<>(priceLists);
         priceLists.sort(Comparator.comparing(o -> ((PriceList)o).getValidityStartDate()).reversed());
         for (PriceList priceList : priceLists) {
             if (priceList.getValidityStartDate().compareTo(date) < 0) {

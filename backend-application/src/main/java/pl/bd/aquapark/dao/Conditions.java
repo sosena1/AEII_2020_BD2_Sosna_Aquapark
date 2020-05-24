@@ -1,33 +1,36 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Conditions")
+@Table(name = "conditions")
 public @Data
 class Conditions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "conditionId")
+    @Column(name = "conditionid")
     private Long conditionId;
 
-    @Column(name = "weekendOnly")
+    @Column(name = "weekendonly")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean weekendOnly;
 
-    @Column(name = "childOnly")
+    @Column(name = "childonly")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean childOnly;
 
-    @Column(name = "seniorOnly")
+    @Column(name = "senioronly")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean seniorOnly;
 
     @OneToMany
-    @JoinColumn(name = "conditionalId")
+    @JoinColumn(name = "conditionalid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private List<PriceListItem> priceListItemList;
 }
