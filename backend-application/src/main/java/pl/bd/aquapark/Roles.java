@@ -8,6 +8,7 @@ public enum Roles implements GrantedAuthority {
     GATE("Gate"),
     ANALYST("Analyst"),
     MAINTAINER("Cleaner"),
+    OWNER("Owner"),
     PRICELIST_MAINTAINER("PriceChanger"),
     CASHIER("Cashier"),
     SUPER_USER("SuperUser");

@@ -1,6 +1,8 @@
 package pl.bd.aquapark.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -39,5 +41,6 @@ class Visit {
 
     @ManyToOne
     @JoinColumn(name = "identificatorid")
+    @Getter(onMethod = @__( @JsonIgnore))
     private ClientIdentificator clientIdentificator;
 }
