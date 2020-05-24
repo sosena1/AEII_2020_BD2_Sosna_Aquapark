@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.bd.aquapark.Roles;
 import pl.bd.aquapark.config.UsernamePasswordAndIdToken;
 import pl.bd.aquapark.dao.*;
-import pl.bd.aquapark.dto.AquaparkAttractionDto;
-import pl.bd.aquapark.dto.PriceListItemDto;
-import pl.bd.aquapark.dto.SetPriceListDto;
+import pl.bd.aquapark.dto.*;
 import pl.bd.aquapark.repository.*;
 import pl.bd.aquapark.service.*;
 
@@ -45,13 +43,19 @@ public class AquaparkController {
     UserRepository userRepository;
 
     @GetMapping(value = "/genders")
-    public ResponseEntity<List<Gender>> getVisit() {
-        return ResponseEntity.ok(GetAllService.getAll(genderRepository));
+    public ResponseEntity<List<GenderDto>> getVisit() {
+        return ResponseEntity.ok(
+                GetAllService.getAll(genderRepository)
+                        .stream().map(GenderDto::fromGender).collect(Collectors.toList())
+        );
     }
 
     @GetMapping(value = "/roles")
-    public ResponseEntity<List<Role>> getRoles() {
-        return ResponseEntity.ok(GetAllService.getAll(roleRepository));
+    public ResponseEntity<List<RoleDto>> getRoles() {
+        return ResponseEntity.ok(
+                GetAllService.getAll(roleRepository)
+                .stream().map(RoleDto::fromRole).collect(Collectors.toList())
+        );
     }
 
     @GetMapping(value = "/pricelist")
@@ -87,6 +91,9 @@ public class AquaparkController {
 
     @PostMapping(value = "/pricelist")
     public ResponseEntity setPriceList(@RequestBody SetPriceListDto setPriceListDto, HttpServletRequest servletRequest) {
+        if (servletRequest.getUserPrincipal() == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
         if (!servletRequest.isUserInRole(Roles.PRICELIST_MAINTAINER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }

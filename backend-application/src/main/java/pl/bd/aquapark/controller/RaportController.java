@@ -1,6 +1,8 @@
 package pl.bd.aquapark.controller;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +23,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,7 +45,7 @@ public class RaportController {
 
     @GetMapping("/management")
     public ResponseEntity<ManagementReport> getManagementReport(HttpServletRequest httpServletRequest, @RequestParam Date start, @RequestParam Date end) {
-        if (!httpServletRequest.isUserInRole(Roles.ANALYTIC.toString())) {
+        if (!httpServletRequest.isUserInRole(Roles.ANALYST.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         List<Date> dates = DateService.generateDates(start, end);
@@ -66,7 +68,7 @@ public class RaportController {
 
     @GetMapping("/operational")
     public ResponseEntity<OperationalReport> getOperationalReport(HttpServletRequest httpServletRequest, @RequestParam Date start, @RequestParam Date end) {
-        if (!httpServletRequest.isUserInRole(Roles.ANALYTIC.toString())) {
+        if (!httpServletRequest.isUserInRole(Roles.ANALYST.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         List<Date> dates = DateService.generateDates(start, end);
@@ -78,7 +80,7 @@ public class RaportController {
 
             operationalReport.maintenancesPerDay.put(complexDate, maintenanceByDay.size());
 
-            operationalReport.aquaparkAttractionMaintenancesOrdered.addAll(
+            operationalReport.maintenancesDetailed.addAll(
                     maintenanceByDay
                         .stream()
                         .map(
@@ -93,13 +95,53 @@ public class RaportController {
 
 
     public static @Data class ManagementReport {
+        @Getter(onMethod = @__( @JsonIgnore))
         private HashMap<ComplexDate, BigDecimal> incomeByDay = new HashMap<>();
         private BigDecimal totalIncome = new BigDecimal(0);
+
+        public List<ComplexDateBigDecimal> getIncomeByDay() {
+            List<ComplexDateBigDecimal> complexDateBigDecimals = new ArrayList<>();
+            for (ComplexDate cd : incomeByDay.keySet()) {
+                BigDecimal count = incomeByDay.get(cd);
+                complexDateBigDecimals.add(new ComplexDateBigDecimal(cd.date, count));
+            }
+            complexDateBigDecimals.sort(Comparator.comparing(ComplexDate::getDate));
+            return complexDateBigDecimals;
+        }
     }
 
     public static @Data class OperationalReport {
+        @Getter(onMethod = @__( @JsonIgnore))
         private HashMap<ComplexDate, Integer> maintenancesPerDay = new HashMap<>();
-        private List<AquaparkMaintenanceDto> aquaparkAttractionMaintenancesOrdered = new ArrayList<>();
+        private List<AquaparkMaintenanceDto> maintenancesDetailed = new ArrayList<>();
+
+        public List<ComplexDateInteger> getMaintenancesByDay() {
+            List<ComplexDateInteger> complexDateIntegers = new ArrayList<>();
+            for (ComplexDate cd : maintenancesPerDay.keySet()) {
+                Integer count = maintenancesPerDay.get(cd);
+                complexDateIntegers.add(new ComplexDateInteger(cd.date, count));
+            }
+            complexDateIntegers.sort(Comparator.comparing(ComplexDate::getDate));
+            return complexDateIntegers;
+        }
+    }
+
+    public static @Data class ComplexDateInteger extends ComplexDate {
+        private int value;
+
+        public ComplexDateInteger(Date date, int value) {
+            super(date);
+            this.value = value;
+        }
+    }
+
+    public static @Data class ComplexDateBigDecimal extends ComplexDate {
+        private BigDecimal value;
+
+        public ComplexDateBigDecimal(Date date, BigDecimal value) {
+            super(date);
+            this.value = value;
+        }
     }
 
     public static @Data class ComplexDate {
@@ -108,7 +150,7 @@ public class RaportController {
 
         public ComplexDate(Date date) {
             this.date = date;
-            LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate localDate = date.toLocalDate();
             dayOfWeek = localDate.getDayOfWeek();
         }
     }

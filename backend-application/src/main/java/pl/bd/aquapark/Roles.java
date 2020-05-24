@@ -3,13 +3,15 @@ package pl.bd.aquapark;
 import org.springframework.security.core.GrantedAuthority;
 
 public enum Roles implements GrantedAuthority {
-    //TODO check correctness with database
-    USER("USER"),
-    GATE("GATE"),
-    ANALYTIC("ANALYTIC"),
-    MAINTAINER("MAINTAINER"),
-    PRICELIST_MAINTAINER("PRICELIST_MAINTAINER"),
-    SELLER("SELLER");
+    CLIENT("Client"),
+    ANONYMOUS_CLIENT("AnonymousClient"),
+    GATE("Gate"),
+    ANALYST("Analyst"),
+    MAINTAINER("Cleaner"),
+    OWNER("Owner"),
+    PRICELIST_MAINTAINER("PriceChanger"),
+    CASHIER("Cashier"),
+    SUPER_USER("SuperUser");
 
 
     private final String role;
@@ -18,12 +20,12 @@ public enum Roles implements GrantedAuthority {
         this.role = role;
     }
 
-    @Deprecated //uzywajcie toString
+    @Deprecated //use toString instead
     public String getAuthority() {
-        return this.role;
+        return toString();
     }
 
     public String toString() {
-        return this.role;
+        return "ROLE_" + this.role; //"ROLE_" must be present, because for some reason Spring really likes it
     }
 }

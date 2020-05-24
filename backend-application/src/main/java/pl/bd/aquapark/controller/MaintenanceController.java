@@ -20,7 +20,6 @@ import pl.bd.aquapark.service.FilteringService;
 import pl.bd.aquapark.service.GetAllService;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 import java.util.Optional;

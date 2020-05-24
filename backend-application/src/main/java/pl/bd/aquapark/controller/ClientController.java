@@ -2,8 +2,6 @@ package pl.bd.aquapark.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +17,6 @@ import pl.bd.aquapark.service.GetAllService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -30,48 +27,48 @@ import java.util.Optional;
 public class ClientController {
 
     @Autowired
-    UserRepository userRepository;
+    ClientRepository clientRepository;
 
     @Autowired
     GenderRepository genderRepository;
 
     @Autowired
-    ClientRepository clientRepository;
+    UserRepository userRepository;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id, HttpServletRequest request) {
+    public ResponseEntity getClient(@PathVariable Long id, HttpServletRequest request) {
         boolean authorized = false;
-        if (request.isUserInRole(Roles.SELLER.toString())) {
+        if (request.isUserInRole(Roles.CASHIER.toString())) {
             authorized = true;
         }
-        Optional<User> user = userRepository.findById(id);
-        if (user.isPresent() && Objects.equals(user.get().getUserName(), request.getUserPrincipal().getName())) {
+        Optional<Client> user = clientRepository.findById(id);
+        if (user.isPresent() && Objects.equals(user.get().getUser().getUserName(), request.getUserPrincipal().getName())) {
             authorized = true;
         }
         if (!authorized) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("You need to be client with this ID or needs to be in role CASHIER to view this information");
         }
         if (!user.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No such client");
         }
         return ResponseEntity.ok(user.get());
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers(
+    public ResponseEntity<List<Client>> getClients(
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName,
             @RequestParam(required = false) String pesel,
             HttpServletRequest request) {
-        if (!request.isUserInRole(Roles.SELLER.toString())) {
+        if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        List<User> users = GetAllService.getAll(userRepository);
-        users = new FilteringService<>(users)
-                .contains(firstName, User::getFirstName)
-                .contains(lastName, User::getLastName)
-                .contains(pesel, User::getPesel).getFiltered();
-        return ResponseEntity.ok(users);
+        List<Client> clients = GetAllService.getAll(clientRepository);
+        clients = new FilteringService<>(clients)
+                .contains(firstName, (Client client) -> client.getUser().getFirstName())
+                .contains(lastName, (Client client) -> client.getUser().getLastName())
+                .contains(pesel, (Client client) -> client.getUser().getPesel()).getFiltered();
+        return ResponseEntity.ok(clients);
     }
 
     @PostMapping(value = "/create")
