@@ -68,6 +68,14 @@ public class User {
     @JoinColumn(name = "genderid")
     private Gender gender;
 
+    public boolean getIsClient() {
+        return client != null;
+    }
+
+    public boolean getIsEmployee() {
+        return employee != null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
