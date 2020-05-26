@@ -31,14 +31,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        Optional<User> userOptional = userRepository.findUserByUserNameAndPassword(name, password);
+        List<User> userOptional = userRepository.findUserByUserNameAndPassword(name, password);
         System.out.println("Login: " + name + ", " + password);
-        if (!userOptional.isPresent()) {
+        if (userOptional.size() != 0) {
             System.out.println("Login fail");
             throw new BadCredentialsException("Authentication failed");
         }
 
-        User user = userOptional.get();
+        User user = userOptional.get(1);
         Client client = user.getClient();
         Employee employee = user.getEmployee();
         Set<Roles> roleList = new HashSet<>();

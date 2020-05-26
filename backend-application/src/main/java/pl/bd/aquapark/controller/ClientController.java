@@ -1,9 +1,11 @@
 package pl.bd.aquapark.controller;
 
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.bd.aquapark.Roles;
 import pl.bd.aquapark.dao.Client;
@@ -15,6 +17,9 @@ import pl.bd.aquapark.repository.UserRepository;
 import pl.bd.aquapark.service.FilteringService;
 import pl.bd.aquapark.service.GetAllService;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.List;
@@ -72,8 +77,19 @@ public class ClientController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseEntity createUser(@RequestBody UserCreateDto userCreateDto) {
+    @Transactional
+    public ResponseEntity createClient(@RequestBody UserCreateDto userCreateDto) {
         //todo check edge cases
+
+        if (userRepository.findUserByUserName(userCreateDto.getUserName()).size() != 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User with this username exists");
+        }
+        if (userRepository.findUserByPesel(userCreateDto.getPesel()).size() != 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User with this pesel exists");
+        }
+
+
+
         User user = new User();
         user.setGender(genderRepository.findById(userCreateDto.getGenderId()).get());
         user.setFirstName(userCreateDto.getName());
@@ -92,8 +108,8 @@ public class ClientController {
         Client client = new Client();
         client.setUser(user);
         client.setOwnsAccount(true);
-        clientRepository.save(client);
+        client = clientRepository.save(client);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.OK).body(client);
     }
 }
