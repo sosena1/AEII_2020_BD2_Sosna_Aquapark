@@ -11,9 +11,11 @@ import pl.bd.aquapark.dto.EndVisitDto;
 import pl.bd.aquapark.dto.VisitDto;
 import pl.bd.aquapark.repository.*;
 import pl.bd.aquapark.service.DateService;
+import pl.bd.aquapark.service.GetAllService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -121,6 +123,21 @@ public class VisitController {
 
         visitRepository.save(visit);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(value = "/id_available")
+    public ResponseEntity getAvailableIdentifiers(HttpServletRequest request) {
+        if (!request.isUserInRole(Roles.CASHIER.toString())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        List<ClientIdentificator> clientIdentificators = GetAllService.getAll(identificatorRepository);
+        List<Long> available = new ArrayList<>();
+        for (ClientIdentificator clientIdentificator : clientIdentificators) {
+            if (!clientIdentificator.getIsInUse()) {
+                available.add(clientIdentificator.getIdentificatorId());
+            }
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(available);
     }
 
     @PostMapping(value = "/end_visit")
