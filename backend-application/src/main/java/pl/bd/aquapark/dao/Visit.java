@@ -43,4 +43,12 @@ class Visit {
     @JoinColumn(name = "identificatorid")
     @Getter(onMethod = @__( @JsonIgnore))
     private ClientIdentificator clientIdentificator;
+
+    public boolean getHasEnded() {
+        return endTime != null;
+    }
+
+    public Long getIdentificatorId() {
+        return clientIdentificator.getIdentificatorId();
+    }
 }

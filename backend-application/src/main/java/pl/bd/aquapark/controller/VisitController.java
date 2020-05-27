@@ -111,6 +111,12 @@ public class VisitController {
         }
 
         Client client = user.getClient();
+        if (client == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User is not a client");
+        }
+
+        //todo check if client is already in some visit
+
         identificator.setIsInUse(true);
         identificator = identificatorRepository.save(identificator);
 
@@ -121,8 +127,8 @@ public class VisitController {
         visit.setValue(new BigDecimal(0));
         visit.setStartTime(DateService.getCurrentTime());
 
-        visitRepository.save(visit);
-        return ResponseEntity.ok().build();
+        visit = visitRepository.save(visit);
+        return ResponseEntity.status(HttpStatus.OK).body("Started visit with id: " + visit.getVisitId());
     }
 
     @GetMapping(value = "/id_available")
@@ -146,7 +152,7 @@ public class VisitController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        Optional<ClientIdentificator> optionalClientIdentificator = identificatorRepository.findById(endVisitDto.getUserIdentificator());
+        Optional<ClientIdentificator> optionalClientIdentificator = identificatorRepository.findById(endVisitDto.getIdentificatorId());
         if (!optionalClientIdentificator.isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No such identificator");
         }
@@ -174,6 +180,6 @@ public class VisitController {
         visitRepository.save(visit);
         identificatorRepository.save(identificator);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.OK).body(visit);
     }
 }
