@@ -36,10 +36,10 @@ class ClientIdentificator {
     @JsonIgnore
     public Visit getActiveVisit() {
         List<Visit> unendedVisits = visits.stream()
-                .filter((Visit v) -> v.getEndTime() == null)
+                .filter(visit -> !visit.getHasEnded())
                 .collect(Collectors.toList());
         if (unendedVisits.size() != 1) {
-            throw new IllegalArgumentException("Cannot get active visit, since there are " + unendedVisits.size() + " active visits! ");
+            throw new IllegalArgumentException("Cannot get 1 active visit, since there are " + unendedVisits.size() + " active visits! Visits size " + visits.size());
         }
         return unendedVisits.get(0);
     }
