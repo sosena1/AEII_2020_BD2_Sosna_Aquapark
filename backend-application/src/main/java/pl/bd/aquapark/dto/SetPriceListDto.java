@@ -3,6 +3,7 @@ package pl.bd.aquapark.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public @Data @AllArgsConstructor class SetPriceListDto {
 
     public static @Data @AllArgsConstructor class SetPriceListItem {
         private final String name;
-        private final Long value; //w groszach!
+        private final BigDecimal value;
         private final String description;
         private final boolean childOnly;
         private final boolean weekendOnly;

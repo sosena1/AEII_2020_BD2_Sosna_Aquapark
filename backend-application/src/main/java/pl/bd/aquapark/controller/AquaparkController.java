@@ -91,7 +91,7 @@ public class AquaparkController {
 
     @PostMapping(value = "/pricelist")
     public ResponseEntity setPriceList(@RequestBody SetPriceListDto setPriceListDto, HttpServletRequest servletRequest) {
-        if (servletRequest.getUserPrincipal() == null) {
+        if (servletRequest.getUserPrincipal() == null) { //potrzebny check bo na ten endpoint da się dostać bez logowania
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         if (!servletRequest.isUserInRole(Roles.PRICELIST_MAINTAINER.toString())) {
@@ -110,7 +110,7 @@ public class AquaparkController {
 
             priceListItem.setConditions(conditions);
             priceListItem.setName(item.getName());
-            priceListItem.setValue(new BigDecimal(item.getValue()).divide(new BigDecimal(100))); //todo check if correct
+            priceListItem.setValue(item.getValue());
             priceListItem.setDescription(item.getDescription());
             priceListItem.setAquaparkAttraction(optionalAquaparkAttraction.get());
 
@@ -130,6 +130,7 @@ public class AquaparkController {
             item.setPriceList(priceList);
             priceListItemRepository.save(item);
         }
-        return ResponseEntity.ok().build();
+
+        return getPriceListItems();
     }
 }
