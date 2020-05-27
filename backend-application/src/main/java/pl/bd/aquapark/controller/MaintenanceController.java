@@ -89,6 +89,8 @@ public class MaintenanceController {
         if (!optionalAquaparkAttraction.isPresent()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No such attraction");
         }
+        //todo perform checks
+
 
         UsernamePasswordAndIdToken usernamePasswordAndIdToken = (UsernamePasswordAndIdToken) servletRequest.getUserPrincipal();
 

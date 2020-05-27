@@ -51,7 +51,7 @@ class AquaparkAttractionUsage {
         LocalTime from = leavingTime.toLocalTime();
         LocalTime to = enteringTime.toLocalTime();
 
-        Duration d = Duration.between(from, to);
+        Duration d = Duration.between(to, from);
         return d.toMinutes();
     }
 

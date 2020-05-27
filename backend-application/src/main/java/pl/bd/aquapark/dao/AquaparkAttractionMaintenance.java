@@ -24,6 +24,6 @@ public @Data class AquaparkAttractionMaintenance {
     private Employee employee;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "attractionid", insertable = false, updatable = false)
+    @JoinColumn(name = "attractionid")
     private AquaparkAttraction aquaparkAttraction;
 }

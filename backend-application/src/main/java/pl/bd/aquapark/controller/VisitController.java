@@ -71,7 +71,7 @@ public class VisitController {
         client.setUser(user);
         client = clientRepository.save(client);
 
-        ClientIdentificator clientIdentificator = identificatorRepository.findById(anonVisit.getClientIdentificator()).get();
+        ClientIdentificator clientIdentificator = identificatorRepository.findById(anonVisit.getIdentificatorId()).get();
         clientIdentificator.setIsInUse(true);
         clientIdentificator = identificatorRepository.save(clientIdentificator);
 
@@ -82,9 +82,9 @@ public class VisitController {
         visit.setValue(new BigDecimal(0));
         visit.setStartTime(DateService.getCurrentTime());
 
-        visitRepository.save(visit);
+        visit = visitRepository.save(visit);
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.OK).body("Started visit with id: " + visit.getVisitId());
     }
 
     @PostMapping(value = "/start_visit")
