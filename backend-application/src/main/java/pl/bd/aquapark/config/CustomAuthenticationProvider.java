@@ -94,7 +94,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         System.out.println("Roles: " + Arrays.toString(roleList.toArray()));
 
 
-        return new UsernamePasswordAuthenticationToken(name, password, roleList);
+        return new UsernamePasswordAndIdToken(name, password, (int) (long) user.getUserId(), roleList); //ale quality castowanie
     }
 
     @Override

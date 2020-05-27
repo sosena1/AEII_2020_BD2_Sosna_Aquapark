@@ -77,7 +77,12 @@ public class DateService {
     }
 
     public static DayOfWeek getDayOfWeek(java.util.Date date) {
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate localDate;
+        if (date instanceof java.sql.Date) {
+            localDate = ((java.sql.Date) date).toLocalDate();
+        } else {
+            localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        }
         return localDate.getDayOfWeek();
     }
 }

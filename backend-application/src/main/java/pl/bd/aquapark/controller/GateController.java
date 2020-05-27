@@ -62,15 +62,24 @@ public class GateController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("no pricing for this attraction was found");
         }
 
-        //todo zrobić sprawdzenie czy wchodzi na drugą atrakcję bez wychodzenia - nielegalny ruch!!
 
         Visit activeVisit = identificator.getActiveVisit();
+
+        List<AquaparkAttractionUsage> aquaparkAttractionUsages = activeVisit.getAquaparkAttractionUsages();
+        aquaparkAttractionUsages = aquaparkAttractionUsages.stream()
+                .filter(aquaparkAttractionUsage -> aquaparkAttractionUsage.getLeavingEvent() == null)
+                .collect(Collectors.toList());
+        if (aquaparkAttractionUsages.size() != 0) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User is already on " + aquaparkAttractionUsages.size() + " attraction(s)");
+        }
+
 
         AquaparkAttractionGateEvent event = new AquaparkAttractionGateEvent();
         event.setEntering(true);
         event.setDate(DateService.getCurrentDay());
         event.setAquaparkAttractionGate(gate);
         event.setClientIdentificator(identificator);
+        event.setTime(DateService.getCurrentTime());
         AquaparkAttractionGateEvent savedEvent = eventRepository.save(event);
 
         AquaparkAttractionUsage usage = new AquaparkAttractionUsage();
@@ -102,6 +111,7 @@ public class GateController {
         event.setEntering(false);
         event.setDate(DateService.getCurrentDay());
         event.setAquaparkAttractionGate(gate);
+        event.setTime(DateService.getCurrentTime());
         event.setClientIdentificator(identificator);
         AquaparkAttractionGateEvent savedEvent = eventRepository.save(event);
 
@@ -117,12 +127,12 @@ public class GateController {
             if (size == 0) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("no usages active! Did you really enter any attraction?");
             } else {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("too many usages active! Did you enter too many attractions without leaving?");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("too many usages active! Did you enter too many attractions without leaving? Size: " + size + ".");
             }
         }
 
 
-        AquaparkAttractionUsage usage = new AquaparkAttractionUsage();
+        AquaparkAttractionUsage usage = usagesForThisAttractionAndVisitAndNotEnded.get(0);
         usage.setLeavingEvent(savedEvent);
         usageRepository.save(usage);
 

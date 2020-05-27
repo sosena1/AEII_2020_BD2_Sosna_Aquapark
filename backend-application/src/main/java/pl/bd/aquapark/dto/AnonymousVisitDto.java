@@ -11,6 +11,6 @@ class AnonymousVisitDto {
     private final String lastName;
     private final Long sexId;
     private final Date birthDate;
-    private final Long clientIdentificator;
+    private final Long identificatorId;
 
 }

@@ -35,7 +35,7 @@ class PriceListItem {
     @Getter(onMethod = @__( @JsonIgnore))
     private PriceList priceList;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "attractionid")
     private AquaparkAttraction aquaparkAttraction;
 
