@@ -33,12 +33,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         List<User> userOptional = userRepository.findUserByUserNameAndPassword(name, password);
         System.out.println("Login: " + name + ", " + password);
-        if (userOptional.size() != 0) {
+        if (userOptional.size() == 0) {
             System.out.println("Login fail");
             throw new BadCredentialsException("Authentication failed");
         }
 
-        User user = userOptional.get(1);
+        User user = userOptional.get(0);
         Client client = user.getClient();
         Employee employee = user.getEmployee();
         Set<Roles> roleList = new HashSet<>();
