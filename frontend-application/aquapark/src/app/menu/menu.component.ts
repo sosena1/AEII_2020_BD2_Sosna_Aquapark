@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    this.isSignedIn = true;
+  }
 
   ngOnInit(): void {
   }
 
+  isSignedIn : boolean
 }
