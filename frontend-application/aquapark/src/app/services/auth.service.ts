@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
+  private username: string = "";
+  private loggedIn: boolean = false;
+
   constructor() { }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.loggedIn;
   }
-
-  username: string = "";
-  loggedIn: boolean = false;
 }
