@@ -1,6 +1,6 @@
 Testujcie na koncie
-login: TEST
-hasło: TEST
+login: Zonia
+hasło: SXfQ173
 bo ma większość (wszystkie?) uprawnień
 
 żeby się zalogować należy w zakładce AUTHORIZATION zmienić type na inherit from parent, a następnie w kolekcji aquapark wybrać BASIC AUTH, i tam wpisać to hasło. Aczkolwiek to powinno działać już odrazu.

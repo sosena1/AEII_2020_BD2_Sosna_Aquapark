@@ -32,20 +32,22 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String name = authentication.getName();
         String password = SecurityUtil.toMd5(authentication.getCredentials().toString());
 
-        List<User> userOptional = userRepository.findUserByUserNameAndPassword(name, password);
+        Optional<User> userOptional = userRepository.findUserByUserNameAndPassword(name, password);
         System.out.println("Login: " + name + ", " + password);
-        if (userOptional.size() == 0) {
+        if (!userOptional.isPresent()) {
             System.out.println("Login fail");
             throw new BadCredentialsException("Authentication failed");
+        } else {
+            System.out.println("user id: " + userOptional.get().getUserId());
         }
 
-        User user = userOptional.get(0);
+        User user = userOptional.get();
         Client client = user.getClient();
         Employee employee = user.getEmployee();
         Set<Roles> roleList = new HashSet<>();
 
         if (client != null) {
-            System.out.println("Is client");
+            System.out.println("Is client with id: " + client.getClientId());
             if (client.getOwnsAccount()) {
                 roleList.add(Roles.CLIENT);
             } else {
@@ -54,8 +56,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         }
 
         if (employee != null) {
-            System.out.println("Is employee");
-            Set<Role> roles = employee.getRoles();
+            System.out.println("Is employee with id: " + employee.getEmployeeId());
+            List<Role> roles = employee.getRoles();
             for (Role role : roles) { //OOP is for noobs
                 System.out.println(role);
                 String roleString = role.getRoleName().toLowerCase();

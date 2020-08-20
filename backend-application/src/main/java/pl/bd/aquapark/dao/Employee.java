@@ -29,7 +29,7 @@ class Employee {
             joinColumns = {@JoinColumn(name = "employeeid")},
             inverseJoinColumns = {@JoinColumn(name = "roleid")}
     )
-    private Set<Role> roles;
+    private List<Role> roles;
 
     @OneToMany
     @JoinColumn(name = "employeeid")
