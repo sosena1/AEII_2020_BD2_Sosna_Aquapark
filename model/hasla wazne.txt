@@ -1,0 +1,27 @@
+Notatka: zastąpiłem hasła w BD ich hashami (MD5).
+Tutaj stara lista haseł, przed zahashowaniem
+
+
+firstName, lastName, userName, password
+Mariel,Elener,Landon,fvVbgTDC492
+Mic,Meert,Rodolfo,NvcdTBDF729
+Aloin,Hew,Theo,coeWasgIuP072
+Kassi,McCuaig,Zonia,SXfQ173
+Kassey,Kobierski,Sherman,sdYb203
+Wain,Foss,Cindie,oplzSD747
+Jaquelin,Reboul,Bethel,YxMnFhSUv630
+Tamara,Gibben,Mellie,EgNpYAvDao101
+Mead,Sowle,Newton,lRHyXID467
+Ramsey,Randal,Charmaine,ryCnN277
+
+A tutaj hasła i ich hashe
+fvVbgTDC492, a5578f19a88cf24804565e18aee31c6c
+NvcdTBDF729, 6d8a2d3ff406bdcf7b0d6d294b8ae886
+coeWasgIuP072, 9f2a3f3976b7c63f36a50a55866cf4c6
+SXfQ173, 69653d46dc2815eec32c916f2b8cceb3
+sdYb203, 0a871370f7e41a5aaab529b70ec1f274
+oplzSD747, 29cf5237600ce404d86bb7ffaf7e8a6a
+YxMnFhSUv630, a7b76fd3ada7b0e6d02c049eddb97ea8
+EgNpYAvDao101, ce785eebfaad24ecabdb839f9d7a73f7
+lRHyXID467, 394e1d5bcfc17c4299620a4a68b612bc
+ryCnN277, 44deed40d07f73c20996ff673d393fea

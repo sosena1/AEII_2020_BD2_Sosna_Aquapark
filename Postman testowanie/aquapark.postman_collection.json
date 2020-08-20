@@ -1,0 +1,910 @@
+{
+	"info": {
+		"_postman_id": "bcaa0f5a-6aac-43c6-80b9-f76027df2f99",
+		"name": "aquapark",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateUserDebug",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/test/adduser/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"test",
+						"adduser",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Genders",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/aquapark/genders/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aquapark",
+						"genders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Attractions",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/aquapark/attractions/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aquapark",
+						"attractions",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Attractions Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/aquapark/attractions/?name=pool",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aquapark",
+						"attractions",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "pool"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Roles",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/aquapark/roles/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aquapark",
+						"roles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Pricelist",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/aquapark/pricelist/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aquapark",
+						"pricelist",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Pricelist Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/aquapark/pricelist/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aquapark",
+						"pricelist",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark AttractionsId",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/aquapark/attractions/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aquapark",
+						"attractions",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark VisitID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/visit/12",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"visit",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Raport Operational",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/raport/operational?start=2019-08-30&end=2019-09-01",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"raport",
+						"operational"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2019-08-30"
+						},
+						{
+							"key": "end",
+							"value": "2019-09-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Raport Management",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/raport/management?start=2019-06-19&end=2019-06-21",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"raport",
+						"management"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2019-06-19"
+						},
+						{
+							"key": "end",
+							"value": "2019-06-21"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark ClientID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/client/17",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"client",
+						"17"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Clients",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/client/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"client",
+						""
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "M",
+							"disabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "R",
+							"disabled": true
+						},
+						{
+							"key": "pesel",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						""
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "M",
+							"disabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "R",
+							"disabled": true
+						},
+						{
+							"key": "pesel",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Users Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						""
+					],
+					"query": [
+						{
+							"key": "firstName",
+							"value": "M",
+							"disabled": true
+						},
+						{
+							"key": "lastName",
+							"value": "R",
+							"disabled": true
+						},
+						{
+							"key": "pesel",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark UserID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Aquapark Available IDs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/visit/id_available",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"visit",
+						"id_available"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Michał\",\n\t\"surname\": \"Sosna\",\n\t\"pesel\": \"9702342313\",\n\t\"genderId\": 3,\n\t\"address\": \"Sosnowo Sosienna 4\",\n\t\"contactNumber\": \"+48 666 666 666\",\n\t\"userName\": \"Michalek\",\n\t\"password\": \"MSosna1997\",\n\t\"birthDate\": \"1997-01-01\",\n\t\"otherInformation\": \"none\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/client/create",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Visit normal identifier is already used",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 26,\n\t\"identificatorId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/visit/start_visit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"visit",
+						"start_visit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Visit normal identifier is not yet used",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"userId\": 26,\n\t\"identificatorId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/visit/start_visit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"visit",
+						"start_visit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Visit end",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"identificatorId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/visit/end_visit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"visit",
+						"end_visit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Maintenance GET",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"firstName\": \"John\",\n\t\"lastName\": \"Stew\",\n\t\"address\": \"Some Street 44 Gliwice\",\n\t\"contactNumber\": \"+48 592 321 999\",\n\t\"otherInformation\": \"Really polite guy\",\n\t\"userName\": \"JohnStew\",\n\t\"password\": \"SecretPassword\",\n\t\"pesel\": \"943943943934\",\n\t\"birthDate\": \"1998-04-26\",\n\t\"gender\": 0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/maintenance",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Maintenance POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"attractionId\": 1,\n\t\"description\": \"Pipe checking\",\n\t\"date\": \"2020-05-27\",\n\t\"employeeId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/maintenance",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"maintenance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Visit anonymous",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"birthDate\": \"1998-06-12\",\n\t\"identificatorId\": 1,\n\t\"firstName\": \"Kamil\",\n\t\"lastName\": \"Sitarski\",\n\t\"sexId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/visit/start_anonymous_visit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"visit",
+						"start_anonymous_visit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Enter attraction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"gateId\": 2,\n\t\"identificatorId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/gate/enter",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gate",
+						"enter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Exit attraction",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"gateId\": 2,\n\t\"identificatorId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/gate/exit",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"gate",
+						"exit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create pricelist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"validityDate\": \"2020-01-01\",\n\t\"items\": \n\t[\n\t{\n\t\t\"attractionId\": 1,\n\t\t\"name\": \"Pool for kids\",\n\t\t\"description\": \"Special deal for pool for kids\",\n\t\t\"childOnly\": true,\n\t\t\"weekendOnly\": false,\n\t\t\"seniorOnly\": false,\n\t\t\"value\": 5.0\n\t},\n\t{\n\t\t\"attractionId\": 1,\n\t\t\"name\": \"Pool for everone\",\n\t\t\"description\": \"Pool cost\",\n\t\t\"childOnly\": false,\n\t\t\"weekendOnly\": false,\n\t\t\"seniorOnly\": false,\n\t\t\"value\": 7.5\n\t},\n\t{\n\t\t\"attractionId\": 2,\n\t\t\"name\": \"Slide for everyone\",\n\t\t\"description\": \"Slide cost\",\n\t\t\"childOnly\": false,\n\t\t\"weekendOnly\": false,\n\t\t\"seniorOnly\": false,\n\t\t\"value\": 15.0\n\t},\n\t{\n\t\t\"attractionId\": 3,\n\t\t\"name\": \"Big pool for everyone\",\n\t\t\"description\": \"Big pool cost\",\n\t\t\"childOnly\": false,\n\t\t\"weekendOnly\": false,\n\t\t\"seniorOnly\": false,\n\t\t\"value\": 17.0\n\t}\n\t\n\t]\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/aquapark/pricelist",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aquapark",
+						"pricelist"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "TEST",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "TEST",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3a0c52a1-691e-4fff-be44-8d260a676370",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d8dc0deb-efac-4b9d-92b2-f770c7b8e626",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
