@@ -77,6 +77,7 @@ public class ClientController {
     }
 
     @PostMapping(value = "/create")
+    @Transactional
     public ResponseEntity createClient(@RequestBody UserCreateDto userCreateDto) {
         //todo check edge cases
 

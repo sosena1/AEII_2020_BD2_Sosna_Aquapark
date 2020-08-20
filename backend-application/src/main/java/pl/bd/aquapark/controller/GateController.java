@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +45,7 @@ public class GateController {
     PriceListRepository priceListRepository;
 
     @PostMapping(value = "enter")
+    @Transactional
     public ResponseEntity<String> enterEvent(HttpServletRequest servletRequest, @RequestBody GateInformationDto gateInfo) {
         SharedCheckerResponse response = check(servletRequest, gateInfo);
         if (response.getResponse() != null) {
@@ -93,6 +95,7 @@ public class GateController {
     }
 
     @PostMapping(value = "exit")
+    @Transactional
     public ResponseEntity<String> exitEvent(HttpServletRequest servletRequest, @RequestBody GateInformationDto gateInfo) {
         SharedCheckerResponse response = check(servletRequest, gateInfo);
         if (response.getResponse() != null) {

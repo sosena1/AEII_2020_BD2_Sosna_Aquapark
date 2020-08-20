@@ -3,6 +3,7 @@ package pl.bd.aquapark.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.bd.aquapark.Roles;
 import pl.bd.aquapark.dao.*;
@@ -52,6 +53,7 @@ public class VisitController {
     }
 
     @PostMapping(value = "/start_anonymous_visit")
+    @Transactional
     public ResponseEntity startAnonymousVisit(@RequestBody AnonymousVisitDto anonVisit, HttpServletRequest request) {
         if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -88,6 +90,7 @@ public class VisitController {
     }
 
     @PostMapping(value = "/start_visit")
+    @Transactional
     public ResponseEntity startVisit(@RequestBody VisitDto visitDto, HttpServletRequest request) {
         if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -147,6 +150,7 @@ public class VisitController {
     }
 
     @PostMapping(value = "/end_visit")
+    @Transactional
     public ResponseEntity endVisit(@RequestBody EndVisitDto endVisitDto, HttpServletRequest request) {
         if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

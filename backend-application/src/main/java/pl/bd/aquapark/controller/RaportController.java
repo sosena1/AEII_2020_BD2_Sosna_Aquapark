@@ -99,7 +99,7 @@ public class RaportController {
         private HashMap<ComplexDate, BigDecimal> incomeByDay = new HashMap<>();
         private BigDecimal totalIncome = new BigDecimal(0);
 
-        public List<ComplexDateBigDecimal> getIncomeByDay() {
+        public List<ComplexDateBigDecimal> getIncomePerDay() {
             List<ComplexDateBigDecimal> complexDateBigDecimals = new ArrayList<>();
             for (ComplexDate cd : incomeByDay.keySet()) {
                 BigDecimal count = incomeByDay.get(cd);

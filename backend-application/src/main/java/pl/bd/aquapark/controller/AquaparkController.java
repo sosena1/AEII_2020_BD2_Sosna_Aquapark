@@ -3,6 +3,7 @@ package pl.bd.aquapark.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.bd.aquapark.Roles;
 import pl.bd.aquapark.config.UsernamePasswordAndIdToken;
@@ -90,6 +91,7 @@ public class AquaparkController {
 
 
     @PostMapping(value = "/pricelist")
+    @Transactional
     public ResponseEntity setPriceList(@RequestBody SetPriceListDto setPriceListDto, HttpServletRequest servletRequest) {
         if (servletRequest.getUserPrincipal() == null) { //potrzebny check bo na ten endpoint da się dostać bez logowania
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
