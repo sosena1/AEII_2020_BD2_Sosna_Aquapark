@@ -45,17 +45,17 @@ insert into USER (userId, firstName, lastName, address, contactNumber, otherInfo
 insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (10, 'Ramsey', 'Randal', '86 Forster Pass', '414392355', '8XM98NCEzce74O9X5B0l', 'Charmaine', '44deed40d07f73c20996ff673d393fea', '08352120086', '2003-01-23', 2);
 
 insert into EMPLOYEE (employeeId, userId) values (1, 5);
-insert into EMPLOYEE (employeeId, userId) values (2, 7);
+insert into EMPLOYEE (employeeId, userId) values (2, 4);
 insert into EMPLOYEE (employeeId, userId) values (3, 2);
 insert into EMPLOYEE (employeeId, userId) values (4, 8); 
 insert into EMPLOYEE (employeeId, userId) values (5, 9);
 
-insert into CLIENT (clientId, ownsAccount, userId) values (1, 0, 1);
+insert into CLIENT (clientId, ownsAccount, userId) values (1, 1, 1);
 insert into CLIENT (clientId, ownsAccount, userId) values (2, 1, 3);
 insert into CLIENT (clientId, ownsAccount, userId) values (3, 1, 5);
-insert into CLIENT (clientId, ownsAccount, userId) values (4, 0, 7);
+insert into CLIENT (clientId, ownsAccount, userId) values (4, 1, 7);
 insert into CLIENT (clientId, ownsAccount, userId) values (5, 1, 10);
-insert into CLIENT (clientId, ownsAccount, userId) values (6, 0, 4); 
+insert into CLIENT (clientId, ownsAccount, userId) values (6, 1, 4); 
 insert into CLIENT (clientId, ownsAccount, userId) values (7, 1, 6);
 
 insert into VISIT (visitId, date, startTime, endTime, value, identificatorId, clientId) values (1, '2020-05-06', '10:30', '13:30', 50.50, 1, 1);
@@ -92,21 +92,20 @@ insert into PRICELISTITEM (priceListItemId, name, value, description, priceListI
 
 insert into ROLE (roleId, roleName) values (1, 'Cashier');
 insert into ROLE (roleId, roleName) values (2, 'Gate');
-insert into ROLE (roleId, roleName) values (3, 'AnonymousClient');
-insert into ROLE (roleId, roleName) values (4, 'Client');
-insert into ROLE (roleId, roleName) values (5, 'Maintainer');
-insert into ROLE (roleId, roleName) values (6, 'Analyst');
-insert into ROLE (roleId, roleName) values (7, 'PriceManager');
-insert into ROLE (roleId, roleName) values (8, 'Owner');
-insert into ROLE (roleId, roleName) values (9, 'SuperUser');
+insert into ROLE (roleId, roleName) values (3, 'Maintainer');
+insert into ROLE (roleId, roleName) values (4, 'Analyst');
+insert into ROLE (roleId, roleName) values (5, 'PriceManager');
+insert into ROLE (roleId, roleName) values (6, 'Owner');
+insert into ROLE (roleId, roleName) values (7, 'SuperUser');
 
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (5, 1);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (1, 2);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (2, 2);
+insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (3, 2);
+insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (4, 2);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (5, 2);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (6, 2);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (7, 2);
-insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (8, 2);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (3, 3);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (5, 4);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (5, 5);
