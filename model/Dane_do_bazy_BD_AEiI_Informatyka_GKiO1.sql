@@ -33,16 +33,16 @@ insert into GENDER (genderId, genderName) values (1, 'Female');
 insert into GENDER (genderId, genderName) values (2, 'Male');
 insert into GENDER (genderId, genderName) values (3, 'N/A');
 
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (1, 'Mariel', 'Elener', '3 Canary Place', '749084822', '1i395p30KU0LlQNo77t1', 'Landon', 'fvVbgTDC492', '93139441283', '1929-05-12', 2);
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (2, 'Mic', 'Meert', '490 Gale Avenue', '930174978', '6E3L8j9452npx88rh144', 'Rodolfo', 'NvcdTBDF729', '57557309332', '1994-05-13', 2);
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (3, 'Aloin', 'Hew', '755 Duke Terrace', '569692874', '33P4BSaS1r8cv1614104', 'Theo', 'coeWasgIuP072', '01057686270', '1971-08-10', 2);
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (4, 'Kassi', 'McCuaig', '75 Elka Lane', '056062630', '5RCpr3al974Va2Ko7685', 'Zonia', 'SXfQ173', '72813884844', '2019-04-01', 3);
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (5, 'Kassey', 'Kobierski', '7280 Russell Drive', '908392332', '363977F1j7L3k6B7dsB3', 'Sherman', 'sdYb203', '20187632915', '1988-09-02', 1);
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (6, 'Wain', 'Foss', '861 Upham Drive', '179955264', 'F5B51d62WRT7V9047F28', 'Cindie', 'oplzSD747', '23186618323', '1921-08-04', 2);
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (7, 'Jaquelin', 'Reboul', '8 Delaware Junction', '619535243', 's7t6w3P831m33J31271o', 'Bethel', 'YxMnFhSUv630', '42585405712', '2018-07-16', 3);
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (8, 'Tamara', 'Gibben', '82 Hallows Drive', '796073444', 'XmOs2gg87Ks7iv8AVkZP', 'Mellie', 'EgNpYAvDao101', '65283193734', '1956-03-01', 1);
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (9, 'Mead', 'Sowle', '3 High Crossing Junction', '625283530', '5x139Iv916gW7123F28D', 'Newton', 'lRHyXID467', '40087205549', '1961-06-18', 2);
-insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (10, 'Ramsey', 'Randal', '86 Forster Pass', '414392355', '8XM98NCEzce74O9X5B0l', 'Charmaine', 'ryCnN277', '08352120086', '2008-01-23', 3);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (1, 'Jakub', 'Klimek', '3 Canary Place', '749084822', '1i395p30KU0LlQNo77t1', 'Landon', 'a5578f19a88cf24804565e18aee31c6c', '93139441283', '1955-05-12', 2);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (2, 'Michał', 'Jankowski', '490 Gale Avenue', '930174978', '6E3L8j9452npx88rh144', 'Rodolfo', '6d8a2d3ff406bdcf7b0d6d294b8ae886', '57557309332', '1994-05-13', 2);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (3, 'Michał', 'Sosna', '755 Duke Terrace', '569692874', '33P4BSaS1r8cv1614104', 'Theo', '9f2a3f3976b7c63f36a50a55866cf4c6', '01057686270', '1971-08-10', 2);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (4, 'Kamil', 'Sitarski', '75 Elka Lane', '056062630', '5RCpr3al974Va2Ko7685', 'Zonia', '69653d46dc2815eec32c916f2b8cceb3', '72813884844', '1998-06-12', 2);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (5, 'Kassey', 'Kobierski', '7280 Russell Drive', '908392332', '363977F1j7L3k6B7dsB3', 'Sherman', '29cf5237600ce404d86bb7ffaf7e8a6a', '20187632915', '1988-09-02', 1);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (6, 'Wain', 'Foss', '861 Upham Drive', '179955264', 'F5B51d62WRT7V9047F28', 'Cindie', 'a7b76fd3ada7b0e6d02c049eddb97ea8', '23186618323', '1921-08-04', 2);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (7, 'Jaquelin', 'Reboul', '8 Delaware Junction', '619535243', 's7t6w3P831m33J31271o', 'Bethel', 'YxMnFhSUv630', '42585405712', '2005-07-16', 2);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (8, 'Tamara', 'Gibben', '82 Hallows Drive', '796073444', 'XmOs2gg87Ks7iv8AVkZP', 'Mellie', 'ce785eebfaad24ecabdb839f9d7a73f7', '65283193734', '1956-03-01', 1);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (9, 'Mead', 'Sowle', '3 High Crossing Junction', '625283530', '5x139Iv916gW7123F28D', 'Newton', '394e1d5bcfc17c4299620a4a68b612bc', '40087205549', '1961-06-18', 2);
+insert into USER (userId, firstName, lastName, address, contactNumber, otherInformation, userName, password, pesel, birthDate, genderId) values (10, 'Ramsey', 'Randal', '86 Forster Pass', '414392355', '8XM98NCEzce74O9X5B0l', 'Charmaine', '44deed40d07f73c20996ff673d393fea', '08352120086', '2003-01-23', 2);
 
 insert into EMPLOYEE (employeeId, userId) values (1, 5);
 insert into EMPLOYEE (employeeId, userId) values (2, 7);
@@ -111,13 +111,13 @@ insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (3, 3);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (5, 4);
 insert into ROLE_HAS_EMPLOYEE (roleId, employeeId) values (5, 5);
 
-insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (1, 'Cleaning', '2019-08-31', 2, 3);
+insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (1, 'Cleaning big pool', '2019-08-31', 2, 3);
 insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (2, 'Water change', '2020-02-09', 2, 3);
-insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (3, 'Repair', '2019-07-21', 1, 3);
-insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (4, 'Modernization', '2020-02-22', 2, 2);
-insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (5, 'Water quality test', '2019-11-14', 2, 2);
-insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (6, 'Repair', '2020-01-22', 4, 3);
-insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (7, 'Cleaning', '2012-10-14', 5, 3);
+insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (3, 'Repair of big pool', '2019-07-21', 1, 3);
+insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (4, 'Modernization of slide', '2020-02-22', 2, 2);
+insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (5, 'Water quality test of slide', '2019-11-14', 2, 2);
+insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (6, 'Repair of big pool', '2020-01-22', 4, 3);
+insert into AQUAPARKATTRACTIONMAINTENANCE (attractionMaintenanceId, description, date, employeeId, attractionId) values (7, 'Cleaning of big pool', '2012-10-14', 5, 3);
 
 insert into AQUAPARKATTRACTIONUSAGE (usageId, attractionId, priceListItemId, visitId, enteringEventId, leavingEventId) values (1, 2, 1, 1, 1, 2);
 insert into AQUAPARKATTRACTIONUSAGE (usageId, attractionId, priceListItemId, visitId, enteringEventId, leavingEventId) values (2, 2, 1, 2, 3, 4);
