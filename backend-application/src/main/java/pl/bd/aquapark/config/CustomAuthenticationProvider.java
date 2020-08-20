@@ -3,6 +3,7 @@ package pl.bd.aquapark.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -14,7 +15,7 @@ import pl.bd.aquapark.dao.Employee;
 import pl.bd.aquapark.dao.Role;
 import pl.bd.aquapark.dao.User;
 import pl.bd.aquapark.repository.UserRepository;
-import pl.bd.aquapark.service.GetAllService;
+import pl.bd.aquapark.util.SecurityUtil;
 
 import java.util.*;
 
@@ -29,7 +30,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         System.out.println("AUTHENTICATION PROCEDURE");
         String name = authentication.getName();
-        String password = authentication.getCredentials().toString();
+        String password = SecurityUtil.toMd5(authentication.getCredentials().toString());
 
         List<User> userOptional = userRepository.findUserByUserNameAndPassword(name, password);
         System.out.println("Login: " + name + ", " + password);
@@ -48,7 +49,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
             if (client.getOwnsAccount()) {
                 roleList.add(Roles.CLIENT);
             } else {
-                roleList.add(Roles.ANONYMOUS_CLIENT); //how did they log in? :|
+                throw new DisabledException("Cannot log in as anonymous client");
             }
         }
 
@@ -65,13 +66,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                     case "gate":
                         roleList.add(Roles.GATE);
                         break;
-                    case "cleaner":
-                        roleList.add(Roles.MAINTAINER);
-                        break;
                     case "analyst":
                         roleList.add(Roles.ANALYST);
                         break;
-                    case "pricechanger":
+                    case "maintainer":
+                        roleList.add(Roles.MAINTAINER);
+                    case "pricemanager":
                         roleList.add(Roles.PRICELIST_MAINTAINER);
                         break;
                     case "superuser":
@@ -85,7 +85,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
                         roleList.add(Roles.PRICELIST_MAINTAINER);
                         break;
                     default:
-                        System.out.println("Role does not exists");
+                        System.out.println("Role does not exists: " + roleString);
                         throw new BadCredentialsException("Authentication failed. Unexpected rolename: " + roleString);
                 }
             }

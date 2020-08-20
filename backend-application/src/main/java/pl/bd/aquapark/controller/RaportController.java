@@ -17,7 +17,7 @@ import pl.bd.aquapark.dto.AquaparkMaintenanceDto;
 import pl.bd.aquapark.repository.AttractionMaintenanceRepository;
 import pl.bd.aquapark.repository.AttractionRepository;
 import pl.bd.aquapark.repository.VisitRepository;
-import pl.bd.aquapark.service.DateService;
+import pl.bd.aquapark.util.DateUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
@@ -48,7 +48,7 @@ public class RaportController {
         if (!httpServletRequest.isUserInRole(Roles.ANALYST.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        List<Date> dates = DateService.generateDates(start, end);
+        List<Date> dates = DateUtil.generateDates(start, end);
         ManagementReport managementReport = new ManagementReport();
 
         for (Date date : dates) {
@@ -71,7 +71,7 @@ public class RaportController {
         if (!httpServletRequest.isUserInRole(Roles.ANALYST.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        List<Date> dates = DateService.generateDates(start, end);
+        List<Date> dates = DateUtil.generateDates(start, end);
         OperationalReport operationalReport = new OperationalReport();
 
         for (Date date : dates) {

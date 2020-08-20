@@ -6,14 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bd.aquapark.Roles;
-import pl.bd.aquapark.dao.Client;
 import pl.bd.aquapark.dao.User;
-import pl.bd.aquapark.dto.UserCreateDto;
 import pl.bd.aquapark.repository.ClientRepository;
 import pl.bd.aquapark.repository.GenderRepository;
 import pl.bd.aquapark.repository.UserRepository;
-import pl.bd.aquapark.service.FilteringService;
-import pl.bd.aquapark.service.GetAllService;
+import pl.bd.aquapark.util.FilteringUtil;
+import pl.bd.aquapark.util.GetAllUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -62,8 +60,8 @@ public class UserController {
         if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        List<User> users = GetAllService.getAll(userRepository);
-        users = new FilteringService<>(users)
+        List<User> users = GetAllUtil.getAll(userRepository);
+        users = new FilteringUtil<>(users)
                 .contains(firstName, User::getFirstName)
                 .contains(lastName, User::getLastName)
                 .contains(pesel, User::getPesel).getFiltered();

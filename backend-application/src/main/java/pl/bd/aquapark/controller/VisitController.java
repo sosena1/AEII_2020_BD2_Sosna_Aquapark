@@ -11,8 +11,8 @@ import pl.bd.aquapark.dto.AnonymousVisitDto;
 import pl.bd.aquapark.dto.EndVisitDto;
 import pl.bd.aquapark.dto.VisitDto;
 import pl.bd.aquapark.repository.*;
-import pl.bd.aquapark.service.DateService;
-import pl.bd.aquapark.service.GetAllService;
+import pl.bd.aquapark.util.DateUtil;
+import pl.bd.aquapark.util.GetAllUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
@@ -63,6 +63,7 @@ public class VisitController {
         user.setBirthDate(anonVisit.getBirthDate());
         user.setFirstName(anonVisit.getFirstName());
         user.setLastName(anonVisit.getLastName());
+        user.setPassword((int) (Math.random()*10000) + "generatedPassword");
         if (anonVisit.getSexId() != null) {
             user.setGender(genderRepository.findById(anonVisit.getSexId()).get());
         }
@@ -78,11 +79,11 @@ public class VisitController {
         clientIdentificator = identificatorRepository.save(clientIdentificator);
 
         Visit visit = new Visit();
-        visit.setDate(DateService.getCurrentDay());
+        visit.setDate(DateUtil.getCurrentDay());
         visit.setClientIdentificator(clientIdentificator);
         visit.setClient(client);
         visit.setValue(new BigDecimal(0));
-        visit.setStartTime(DateService.getCurrentTime());
+        visit.setStartTime(DateUtil.getCurrentTime());
 
         visit = visitRepository.save(visit);
 
@@ -124,11 +125,11 @@ public class VisitController {
         identificator = identificatorRepository.save(identificator);
 
         Visit visit = new Visit();
-        visit.setDate(DateService.getCurrentDay());
+        visit.setDate(DateUtil.getCurrentDay());
         visit.setClientIdentificator(identificator);
         visit.setClient(client);
         visit.setValue(new BigDecimal(0));
-        visit.setStartTime(DateService.getCurrentTime());
+        visit.setStartTime(DateUtil.getCurrentTime());
 
         visit = visitRepository.save(visit);
         return ResponseEntity.status(HttpStatus.OK).body("Started visit with id: " + visit.getVisitId());
@@ -139,7 +140,7 @@ public class VisitController {
         if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        List<ClientIdentificator> clientIdentificators = GetAllService.getAll(identificatorRepository);
+        List<ClientIdentificator> clientIdentificators = GetAllUtil.getAll(identificatorRepository);
         List<Long> available = new ArrayList<>();
         for (ClientIdentificator clientIdentificator : clientIdentificators) {
             if (!clientIdentificator.getIsInUse()) {
@@ -169,7 +170,7 @@ public class VisitController {
 
         Visit visit = identificator.getActiveVisit();
         identificator.setIsInUse(false);
-        visit.setEndTime(DateService.getCurrentTime());
+        visit.setEndTime(DateUtil.getCurrentTime());
 
         List<AquaparkAttractionUsage> usages = visit.getAquaparkAttractionUsages();
 

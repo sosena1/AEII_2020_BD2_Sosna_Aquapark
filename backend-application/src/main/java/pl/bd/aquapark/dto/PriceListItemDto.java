@@ -2,14 +2,10 @@ package pl.bd.aquapark.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import pl.bd.aquapark.dao.AquaparkAttraction;
-import pl.bd.aquapark.dao.AquaparkAttractionMaintenance;
 import pl.bd.aquapark.dao.Conditions;
 import pl.bd.aquapark.dao.PriceListItem;
-import pl.bd.aquapark.service.DateService;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 
 public @Data @AllArgsConstructor
 class PriceListItemDto {

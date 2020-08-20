@@ -1,17 +1,22 @@
-package pl.bd.aquapark.service;
+package pl.bd.aquapark.util;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.time.*;
+import java.util.*;
 
 import static java.util.Calendar.*;
 
-public class DateService {
+public class DateUtil {
+
+    private static java.util.Date overriddenDate = null;
+
+    public static void setOverriddenDate(java.util.Date date) {
+        overriddenDate = date;
+    }
+
+    public static Date getOverriddenDate() {
+        return overriddenDate;
+    }
+
     public static boolean isDayEqual(java.sql.Date date, java.sql.Date date2) {
         Calendar cal1 = getCalendar(date);
         Calendar cal2 = getCalendar(date2);
@@ -44,10 +49,20 @@ public class DateService {
     }
 
     public static java.sql.Date getCurrentDay() {
+        if (overriddenDate != null) {
+            return utilDateToSqlDate(overriddenDate);
+        }
+
         return utilDateToSqlDate(new java.util.Date());
     }
 
     public static java.sql.Time getCurrentTime() {
+        if (overriddenDate != null) {
+            return java.sql.Time.valueOf(LocalDateTime.ofInstant(overriddenDate.toInstant(),
+                    ZoneId.systemDefault()).toLocalTime());
+        }
+
+
         return java.sql.Time.valueOf(LocalTime.now());
     }
 

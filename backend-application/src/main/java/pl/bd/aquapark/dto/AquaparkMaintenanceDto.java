@@ -2,10 +2,8 @@ package pl.bd.aquapark.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import pl.bd.aquapark.dao.AquaparkAttraction;
 import pl.bd.aquapark.dao.AquaparkAttractionMaintenance;
 import pl.bd.aquapark.dao.User;
-import pl.bd.aquapark.service.DateService;
 
 import java.sql.Date;
 

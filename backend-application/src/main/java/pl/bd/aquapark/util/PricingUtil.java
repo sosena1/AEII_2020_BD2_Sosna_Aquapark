@@ -1,22 +1,20 @@
-package pl.bd.aquapark.service;
+package pl.bd.aquapark.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pl.bd.aquapark.dao.*;
 import pl.bd.aquapark.repository.ConditionRepository;
 import pl.bd.aquapark.repository.PriceListRepository;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.sql.Date;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class PricingService {
+public class PricingUtil {
 
     public static PriceList getPriceListForDate(PriceListRepository priceListRepository, Date date) {
-        List<PriceList> priceLists = GetAllService.getAll(priceListRepository);
+        List<PriceList> priceLists = GetAllUtil.getAll(priceListRepository);
         priceLists = new ArrayList<>(priceLists);
         priceLists.sort(Comparator.comparing(o -> ((PriceList)o).getValidityStartDate()).reversed());
         for (PriceList priceList : priceLists) {
@@ -29,9 +27,9 @@ public class PricingService {
     }
 
     public static PriceListItem priceListItemForSettings(PriceListRepository priceListRepository, User user, AquaparkAttraction aquaparkAttraction, Date date) {
-        PriceList priceList = getPriceListForDate(priceListRepository, DateService.getCurrentDay());
+        PriceList priceList = getPriceListForDate(priceListRepository, DateUtil.getCurrentDay());
 
-        int userAge = DateService.getDiffYears(user.getBirthDate(), DateService.getCurrentDay());
+        int userAge = DateUtil.getDiffYears(user.getBirthDate(), DateUtil.getCurrentDay());
         boolean isChild = false;
         boolean isSenior = false;
         boolean isWeekend = false;
@@ -43,7 +41,7 @@ public class PricingService {
             isSenior = true;
         }
 
-        DayOfWeek dayOfWeek = DateService.getDayOfWeek(date);
+        DayOfWeek dayOfWeek = DateUtil.getDayOfWeek(date);
         if (dayOfWeek == DayOfWeek.SATURDAY || dayOfWeek == DayOfWeek.SUNDAY) {
             isWeekend = true;
         }
@@ -81,7 +79,7 @@ public class PricingService {
     }
 
     public static Conditions getOrCreateCondition(ConditionRepository repository, boolean childOnly, boolean seniorOnly, boolean weekendOnly) {
-        List<Conditions> conditions = GetAllService.getAll(repository);
+        List<Conditions> conditions = GetAllUtil.getAll(repository);
         for (Conditions condit : conditions) {
             if (condit.getWeekendOnly() == weekendOnly
             && condit.getChildOnly() == childOnly

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import pl.bd.aquapark.dao.AquaparkAttraction;
 import pl.bd.aquapark.dao.AquaparkAttractionMaintenance;
-import pl.bd.aquapark.service.DateService;
+import pl.bd.aquapark.util.DateUtil;
 
 import java.sql.Date;
 
@@ -20,7 +20,7 @@ class AquaparkAttractionDto {
         long attractionId = aquaparkAttraction.getAttractionId();
         Long maxUsers = aquaparkAttraction.getMaxUsers();
         String name = aquaparkAttraction.getName();
-        Date today = DateService.getCurrentDay();
+        Date today = DateUtil.getCurrentDay();
         boolean maintenanceToday = aquaparkAttraction.getAquaparkAttractionMaintenances()
                 .stream().anyMatch((AquaparkAttractionMaintenance a) -> a.getDate().equals(today));
         return new AquaparkAttractionDto(attractionId, maxUsers, name, maintenanceToday);

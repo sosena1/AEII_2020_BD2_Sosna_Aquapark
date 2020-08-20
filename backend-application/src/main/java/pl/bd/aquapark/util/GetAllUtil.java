@@ -1,4 +1,4 @@
-package pl.bd.aquapark.service;
+package pl.bd.aquapark.util;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -7,8 +7,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetAllService {
-    public static  <T> List<T> getAll(PagingAndSortingRepository<T, Long> repository) {
+public class GetAllUtil {
+    public static <T> List<T> getAll(PagingAndSortingRepository<T, Long> repository) {
         long count = repository.count();
 
         if (count == 0) {

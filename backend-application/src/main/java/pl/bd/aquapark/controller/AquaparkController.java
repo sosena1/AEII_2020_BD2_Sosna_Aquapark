@@ -10,10 +10,12 @@ import pl.bd.aquapark.config.UsernamePasswordAndIdToken;
 import pl.bd.aquapark.dao.*;
 import pl.bd.aquapark.dto.*;
 import pl.bd.aquapark.repository.*;
-import pl.bd.aquapark.service.*;
+import pl.bd.aquapark.util.DateUtil;
+import pl.bd.aquapark.util.FilteringUtil;
+import pl.bd.aquapark.util.GetAllUtil;
+import pl.bd.aquapark.util.PricingUtil;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +48,7 @@ public class AquaparkController {
     @GetMapping(value = "/genders")
     public ResponseEntity<List<GenderDto>> getVisit() {
         return ResponseEntity.ok(
-                GetAllService.getAll(genderRepository)
+                GetAllUtil.getAll(genderRepository)
                         .stream().map(GenderDto::fromGender).collect(Collectors.toList())
         );
     }
@@ -54,14 +56,14 @@ public class AquaparkController {
     @GetMapping(value = "/roles")
     public ResponseEntity<List<RoleDto>> getRoles() {
         return ResponseEntity.ok(
-                GetAllService.getAll(roleRepository)
+                GetAllUtil.getAll(roleRepository)
                 .stream().map(RoleDto::fromRole).collect(Collectors.toList())
         );
     }
 
     @GetMapping(value = "/pricelist")
     public ResponseEntity<List<PriceListItemDto>> getPriceListItems() {
-        PriceList priceList = PricingService.getPriceListForDate(priceListRepository, DateService.getCurrentDay());
+        PriceList priceList = PricingUtil.getPriceListForDate(priceListRepository, DateUtil.getCurrentDay());
         return ResponseEntity.ok(priceList
             .getPriceListItems()
             .stream()
@@ -71,8 +73,8 @@ public class AquaparkController {
     }
     @GetMapping(value = "/attractions")
     public ResponseEntity<List<AquaparkAttractionDto>> getAttractions(@RequestParam(required = false) String name) {
-        List<AquaparkAttraction> aquaparkAttractions = GetAllService.getAll(attractionRepository);
-        aquaparkAttractions = new FilteringService<>(aquaparkAttractions).contains(name, AquaparkAttraction::getName).getFiltered();
+        List<AquaparkAttraction> aquaparkAttractions = GetAllUtil.getAll(attractionRepository);
+        aquaparkAttractions = new FilteringUtil<>(aquaparkAttractions).contains(name, AquaparkAttraction::getName).getFiltered();
         return ResponseEntity.ok(
           aquaparkAttractions.stream()
             .map(AquaparkAttractionDto::fromAquaparkAttraction)
@@ -108,7 +110,7 @@ public class AquaparkController {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No attraction with id " + item.getAttractionId());
             }
 
-            Conditions conditions = PricingService.getOrCreateCondition(conditionRepository, item.isChildOnly(), item.isSeniorOnly(), item.isWeekendOnly());
+            Conditions conditions = PricingUtil.getOrCreateCondition(conditionRepository, item.isChildOnly(), item.isSeniorOnly(), item.isWeekendOnly());
 
             priceListItem.setConditions(conditions);
             priceListItem.setName(item.getName());

@@ -1,7 +1,6 @@
 package pl.bd.aquapark.controller;
 
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +13,10 @@ import pl.bd.aquapark.dto.UserCreateDto;
 import pl.bd.aquapark.repository.ClientRepository;
 import pl.bd.aquapark.repository.GenderRepository;
 import pl.bd.aquapark.repository.UserRepository;
-import pl.bd.aquapark.service.FilteringService;
-import pl.bd.aquapark.service.GetAllService;
+import pl.bd.aquapark.util.FilteringUtil;
+import pl.bd.aquapark.util.GetAllUtil;
+import pl.bd.aquapark.util.SecurityUtil;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceContext;
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.List;
@@ -68,8 +65,8 @@ public class ClientController {
         if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        List<Client> clients = GetAllService.getAll(clientRepository);
-        clients = new FilteringService<>(clients)
+        List<Client> clients = GetAllUtil.getAll(clientRepository);
+        clients = new FilteringUtil<>(clients)
                 .contains(firstName, (Client client) -> client.getUser().getFirstName())
                 .contains(lastName, (Client client) -> client.getUser().getLastName())
                 .contains(pesel, (Client client) -> client.getUser().getPesel()).getFiltered();
@@ -101,7 +98,7 @@ public class ClientController {
         user.setPesel(userCreateDto.getPesel());
 
         user.setUserName(userCreateDto.getUserName());
-        user.setPassword(userCreateDto.getPassword());
+        user.setPassword(SecurityUtil.toMd5(userCreateDto.getPassword()));
 
         user = userRepository.saveAndFlush(user);
 

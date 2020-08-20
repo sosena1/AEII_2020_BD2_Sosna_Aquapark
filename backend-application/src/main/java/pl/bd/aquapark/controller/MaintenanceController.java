@@ -16,9 +16,9 @@ import pl.bd.aquapark.repository.AttractionMaintenanceRepository;
 import pl.bd.aquapark.repository.AttractionRepository;
 import pl.bd.aquapark.repository.EmployeeRepository;
 import pl.bd.aquapark.repository.UserRepository;
-import pl.bd.aquapark.service.DateService;
-import pl.bd.aquapark.service.FilteringService;
-import pl.bd.aquapark.service.GetAllService;
+import pl.bd.aquapark.util.DateUtil;
+import pl.bd.aquapark.util.FilteringUtil;
+import pl.bd.aquapark.util.GetAllUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
@@ -55,8 +55,8 @@ public class MaintenanceController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        List<AquaparkAttractionMaintenance> maintenances = GetAllService.getAll(attractionMaintenanceRepository);
-        maintenances = new FilteringService<>(maintenances)
+        List<AquaparkAttractionMaintenance> maintenances = GetAllUtil.getAll(attractionMaintenanceRepository);
+        maintenances = new FilteringUtil<>(maintenances)
                 .contains(name, (AquaparkAttractionMaintenance a) -> a.getAquaparkAttraction().getName())
                 .starts(startingDate, AquaparkAttractionMaintenance::getDate)
                 .ends(endingDate, AquaparkAttractionMaintenance::getDate)
@@ -99,7 +99,7 @@ public class MaintenanceController {
         User user = userRepository.findById(usernamePasswordAndIdToken.getUserId()).get();
 
         AquaparkAttractionMaintenance maintenance = new AquaparkAttractionMaintenance();
-        maintenance.setDate(newEntry.date == null ? DateService.getCurrentDay() : newEntry.date);
+        maintenance.setDate(newEntry.date == null ? DateUtil.getCurrentDay() : newEntry.date);
         maintenance.setDescription(newEntry.description);
         maintenance.setEmployee(newEntry.employeeId == null ? user.getEmployee() : employeeRepository.findById(newEntry.employeeId).get());
         maintenance.setAquaparkAttraction(optionalAquaparkAttraction.get());

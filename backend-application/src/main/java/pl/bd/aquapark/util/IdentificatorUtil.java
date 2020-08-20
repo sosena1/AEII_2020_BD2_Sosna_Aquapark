@@ -1,15 +1,14 @@
-package pl.bd.aquapark.service;
+package pl.bd.aquapark.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pl.bd.aquapark.dao.ClientIdentificator;
 import pl.bd.aquapark.repository.IdentificatorRepository;
 
 import java.util.List;
 
-public class IdentificatorService {
+public class IdentificatorUtil {
 
     public static ClientIdentificator findFreeIdentificator(IdentificatorRepository identificatorRepository) {
-        List<ClientIdentificator> clientIdentificators = GetAllService.getAll(identificatorRepository);
+        List<ClientIdentificator> clientIdentificators = GetAllUtil.getAll(identificatorRepository);
 
         for (ClientIdentificator clientIdentificator : clientIdentificators) {
             if (!clientIdentificator.getIsInUse()) {

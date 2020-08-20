@@ -14,13 +14,11 @@ import pl.bd.aquapark.Roles;
 import pl.bd.aquapark.dao.*;
 import pl.bd.aquapark.dto.GateInformationDto;
 import pl.bd.aquapark.repository.*;
-import pl.bd.aquapark.service.DateService;
-import pl.bd.aquapark.service.GetAllService;
-import pl.bd.aquapark.service.PricingService;
+import pl.bd.aquapark.util.DateUtil;
+import pl.bd.aquapark.util.GetAllUtil;
+import pl.bd.aquapark.util.PricingUtil;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Time;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -58,7 +56,7 @@ public class GateController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("identificator is not in use!");
         }
 
-        PriceListItem priceListItem = PricingService.priceListItemForSettings(priceListRepository, identificator.getActiveVisit().getClient().getUser(), gate.getAquaparkAttraction(), DateService.getCurrentDay());
+        PriceListItem priceListItem = PricingUtil.priceListItemForSettings(priceListRepository, identificator.getActiveVisit().getClient().getUser(), gate.getAquaparkAttraction(), DateUtil.getCurrentDay());
 
         if (priceListItem == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("no pricing for this attraction was found");
@@ -78,10 +76,10 @@ public class GateController {
 
         AquaparkAttractionGateEvent event = new AquaparkAttractionGateEvent();
         event.setEntering(true);
-        event.setDate(DateService.getCurrentDay());
+        event.setDate(DateUtil.getCurrentDay());
         event.setAquaparkAttractionGate(gate);
         event.setClientIdentificator(identificator);
-        event.setTime(DateService.getCurrentTime());
+        event.setTime(DateUtil.getCurrentTime());
         AquaparkAttractionGateEvent savedEvent = eventRepository.save(event);
 
         AquaparkAttractionUsage usage = new AquaparkAttractionUsage();
@@ -112,14 +110,14 @@ public class GateController {
 
         AquaparkAttractionGateEvent event = new AquaparkAttractionGateEvent();
         event.setEntering(false);
-        event.setDate(DateService.getCurrentDay());
+        event.setDate(DateUtil.getCurrentDay());
         event.setAquaparkAttractionGate(gate);
-        event.setTime(DateService.getCurrentTime());
+        event.setTime(DateUtil.getCurrentTime());
         event.setClientIdentificator(identificator);
         AquaparkAttractionGateEvent savedEvent = eventRepository.save(event);
 
         //znalezienie aktualnego usage
-        List<AquaparkAttractionUsage> usages = GetAllService.getAll(usageRepository);
+        List<AquaparkAttractionUsage> usages = GetAllUtil.getAll(usageRepository);
         List<AquaparkAttractionUsage> usagesForThisAttractionAndVisitAndNotEnded = usages.stream()
                 .filter((AquaparkAttractionUsage us) -> us.getVisit().equals(activeVisit))
                 .filter((AquaparkAttractionUsage us) -> us.getAquaparkAttraction().equals(gate.getAquaparkAttraction()))

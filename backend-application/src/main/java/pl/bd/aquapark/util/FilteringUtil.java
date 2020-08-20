@@ -1,4 +1,4 @@
-package pl.bd.aquapark.service;
+package pl.bd.aquapark.util;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -20,11 +20,11 @@ import java.util.stream.Collectors;
  *         .contains(userId, User::getUserId)
  *         .getFiltered();
  */
-public class FilteringService<T> {
+public class FilteringUtil<T> {
 
     private List<T> filteredList;
 
-    public FilteringService(List<T> input) {
+    public FilteringUtil(List<T> input) {
         this.filteredList = new ArrayList<>(input);
     }
 
@@ -35,7 +35,7 @@ public class FilteringService<T> {
     /**
      * Filtruje według Longa match.
      */
-    public FilteringService<T> contains(Long match, LongGetter<T> getter) {
+    public FilteringUtil<T> contains(Long match, LongGetter<T> getter) {
         if (match == null) return this;
 
         filteredList = filteredList
@@ -51,7 +51,7 @@ public class FilteringService<T> {
     /**
      * Filtruje według stringa match. Ignoruje case.
      */
-    public FilteringService<T> contains(String match, StringGetter<T> getter) {
+    public FilteringUtil<T> contains(String match, StringGetter<T> getter) {
         if (match == null) return this;
 
         String matchLowerCase = match.toLowerCase();
@@ -74,14 +74,14 @@ public class FilteringService<T> {
     /**
      * Filtruje według daty match. Daty muszą być równe co do dnia.
      */
-    public FilteringService<T> contains(Date match, DateGetter<T> getter) {
+    public FilteringUtil<T> contains(Date match, DateGetter<T> getter) {
         if (match == null) return this;
 
         filteredList = filteredList
                 .stream()
                 .filter(
                         (T t) -> {
-                            return DateService.isDayEqual(getter.getDate(t), match);
+                            return DateUtil.isDayEqual(getter.getDate(t), match);
                         })
                 .collect(Collectors.toList());
         return this;
@@ -91,7 +91,7 @@ public class FilteringService<T> {
     /*
     Filtruje według daty (starting date może być równe lub mniejsze niż aktualna data)
      */
-    public FilteringService<T> starts(Date startingDate, DateGetter<T> getter) {
+    public FilteringUtil<T> starts(Date startingDate, DateGetter<T> getter) {
         if (startingDate == null) return this;
 
         filteredList = filteredList
@@ -107,7 +107,7 @@ public class FilteringService<T> {
     /*
     Filtruje według daty (ending date może być równe lub większe niż aktualna data)
      */
-    public FilteringService<T> ends(Date endingDate, DateGetter<T> getter) {
+    public FilteringUtil<T> ends(Date endingDate, DateGetter<T> getter) {
         if (endingDate == null) return this;
 
         filteredList = filteredList
