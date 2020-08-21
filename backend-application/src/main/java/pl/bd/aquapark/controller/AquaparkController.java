@@ -93,7 +93,6 @@ public class AquaparkController {
 
 
     @PostMapping(value = "/pricelist")
-    @Transactional
     public ResponseEntity setPriceList(@RequestBody SetPriceListDto setPriceListDto, HttpServletRequest servletRequest) {
         if (servletRequest.getUserPrincipal() == null) { //potrzebny check bo na ten endpoint da się dostać bez logowania
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

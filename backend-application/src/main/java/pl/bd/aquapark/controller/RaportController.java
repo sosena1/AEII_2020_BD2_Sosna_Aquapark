@@ -52,7 +52,7 @@ public class RaportController {
         ManagementReport managementReport = new ManagementReport();
 
         for (Date date : dates) {
-            List<Visit> visitsForDay = visitRepository.findAllByDate(date);
+            List<Visit> visitsForDay = visitRepository.findAllByDate(date.toString());
 
             BigDecimal income = new BigDecimal(0);
 
@@ -75,7 +75,7 @@ public class RaportController {
         OperationalReport operationalReport = new OperationalReport();
 
         for (Date date : dates) {
-            List<AquaparkAttractionMaintenance> maintenanceByDay = attractionMaintenanceRepository.findAllByDate(date);
+            List<AquaparkAttractionMaintenance> maintenanceByDay = attractionMaintenanceRepository.findAllByDate(date.toString());
             ComplexDate complexDate = new ComplexDate(date);
 
             operationalReport.maintenancesPerDay.put(complexDate, maintenanceByDay.size());

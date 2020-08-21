@@ -43,7 +43,6 @@ public class GateController {
     PriceListRepository priceListRepository;
 
     @PostMapping(value = "enter")
-    @Transactional
     public ResponseEntity<String> enterEvent(HttpServletRequest servletRequest, @RequestBody GateInformationDto gateInfo) {
         SharedCheckerResponse response = check(servletRequest, gateInfo);
         if (response.getResponse() != null) {
@@ -86,14 +85,13 @@ public class GateController {
         usage.setEnteringEvent(savedEvent);
         usage.setAquaparkAttraction(gate.getAquaparkAttraction());
         usage.setVisit(activeVisit);
-        usage.setPriceListItem(priceListItem);
+
         usageRepository.save(usage);
 
         return ResponseEntity.ok("succesfully entered");
     }
 
     @PostMapping(value = "exit")
-    @Transactional
     public ResponseEntity<String> exitEvent(HttpServletRequest servletRequest, @RequestBody GateInformationDto gateInfo) {
         SharedCheckerResponse response = check(servletRequest, gateInfo);
         if (response.getResponse() != null) {

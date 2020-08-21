@@ -42,6 +42,9 @@ public class VisitController {
     public ResponseEntity<Visit> getVisit(@PathVariable Long id, HttpServletRequest request) {
         Optional<Visit> visitOptional = visitRepository.findById(id);
         if (!visitOptional.isPresent()) {
+            if (request.isUserInRole(Roles.SUPER_USER.toString())) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
 
@@ -53,7 +56,6 @@ public class VisitController {
     }
 
     @PostMapping(value = "/start_anonymous_visit")
-    @Transactional
     public ResponseEntity startAnonymousVisit(@RequestBody AnonymousVisitDto anonVisit, HttpServletRequest request) {
         if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -91,7 +93,6 @@ public class VisitController {
     }
 
     @PostMapping(value = "/start_visit")
-    @Transactional
     public ResponseEntity startVisit(@RequestBody VisitDto visitDto, HttpServletRequest request) {
         if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -151,7 +152,6 @@ public class VisitController {
     }
 
     @PostMapping(value = "/end_visit")
-    @Transactional
     public ResponseEntity endVisit(@RequestBody EndVisitDto endVisitDto, HttpServletRequest request) {
         if (!request.isUserInRole(Roles.CASHIER.toString())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

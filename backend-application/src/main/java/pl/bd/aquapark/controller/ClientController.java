@@ -74,7 +74,6 @@ public class ClientController {
     }
 
     @PostMapping(value = "/create")
-    @Transactional
     public ResponseEntity createClient(@RequestBody UserCreateDto userCreateDto) {
         //todo check edge cases
 
@@ -100,14 +99,14 @@ public class ClientController {
         user.setUserName(userCreateDto.getUserName());
         user.setPassword(SecurityUtil.toMd5(userCreateDto.getPassword()));
 
-        user = userRepository.saveAndFlush(user);
+        user = userRepository.saveAndFlush(user); //todo confirm via tests
 
         Client client = new Client();
         client.setUser(user);
         client.setOwnsAccount(true);
-        client = clientRepository.saveAndFlush(client);
+        client = clientRepository.saveAndFlush(client); //todo confirm via tests
         user.setClient(client);
-        user = userRepository.saveAndFlush(user);
+        user = userRepository.saveAndFlush(user); //todo confirm via tests
 
 
         return ResponseEntity.status(HttpStatus.OK).body(clientRepository.findById(client.getClientId()).get());

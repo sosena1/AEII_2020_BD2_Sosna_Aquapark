@@ -73,7 +73,6 @@ public class MaintenanceController {
     }
 
     @PostMapping
-    @Transactional
     public ResponseEntity createMaintenance(
             HttpServletRequest servletRequest,
             @RequestBody NewEntry newEntry

@@ -50,6 +50,11 @@ public class PricingUtil {
         BigDecimal bestPriceValue = new BigDecimal(100000);
 
         for (PriceListItem priceListItem : priceList.getPriceListItems()) {
+            if (!priceListItem.getAquaparkAttraction().equals(aquaparkAttraction)) {
+                continue; //todo test
+            }
+
+
             Conditions conditions = priceListItem.getConditions();
 
             if (conditions.getChildOnly() && !isChild) {
@@ -92,6 +97,7 @@ public class PricingUtil {
         conditions1.setChildOnly(childOnly);
         conditions1.setWeekendOnly(weekendOnly);
 
-        return repository.save(conditions1);
+        //return repository.save(conditions1); todo confirm via tests
+        return conditions1;
     }
 }
