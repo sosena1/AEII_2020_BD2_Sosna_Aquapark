@@ -35,9 +35,9 @@ public class PricingUtil {
         boolean isWeekend = false;
 
 
-        if (userAge < 12) {
+        if (userAge <= 16) {
             isChild = true;
-        } else if (userAge > 65) {
+        } else if (userAge >= 65) {
             isSenior = true;
         }
 
