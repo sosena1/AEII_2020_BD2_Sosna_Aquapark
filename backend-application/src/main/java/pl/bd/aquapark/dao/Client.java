@@ -6,6 +6,7 @@ import lombok.Getter;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,6 +30,14 @@ class Client {
     @JoinColumn(name = "clientid")
     @Getter(onMethod = @__( @JsonIgnore))
     private List<Visit> visits;
+
+    public List<Long> getVisitsId() {
+        List<Long> integers = new ArrayList<>();
+        for (Visit visit : visits) {
+            integers.add(visit.getVisitId());
+        }
+        return integers;
+    }
 
     @Override
     public String toString() {
