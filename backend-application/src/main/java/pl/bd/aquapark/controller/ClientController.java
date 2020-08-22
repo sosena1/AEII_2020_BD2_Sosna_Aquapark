@@ -1,6 +1,7 @@
 package pl.bd.aquapark.controller;
 
 
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -77,6 +78,54 @@ public class ClientController {
     public ResponseEntity createClient(@RequestBody UserCreateDto userCreateDto) {
         //todo check edge cases
 
+        if (Strings.isBlank(userCreateDto.getUserName())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User name cannot be null");
+        }
+
+        if (Strings.isBlank(userCreateDto.getPassword())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password cannot be null");
+        }
+
+        if (Strings.isBlank(userCreateDto.getPesel())) {
+            userCreateDto.setPesel("");
+        }
+
+        if (userCreateDto.getGenderId() == null || userCreateDto.getGenderId() < 1 || userCreateDto.getGenderId() > 3) {
+            userCreateDto.setGenderId(3L);
+        }
+
+        if (Strings.isBlank(userCreateDto.getAddress())) {
+            userCreateDto.setAddress("");
+        }
+
+        if (Strings.isBlank(userCreateDto.getContactNumber())) {
+            userCreateDto.setContactNumber("");
+        }
+
+        if (Strings.isBlank(userCreateDto.getName())) {
+            userCreateDto.setName("");
+        }
+
+        if (Strings.isBlank(userCreateDto.getSurname())) {
+            userCreateDto.setSurname("");
+        }
+
+        if (Strings.isBlank(userCreateDto.getOtherInformation())) {
+            userCreateDto.setOtherInformation("");
+        }
+
+        if (userCreateDto.getName().length() < 3) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Username too short");
+        }
+
+        if (userCreateDto.getPassword().length() < 3) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Password too short");
+        }
+
+        if (userCreateDto.getBirthDate() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Birth date cannot be null");
+        }
+
         if (userRepository.findUserByUserName(userCreateDto.getUserName()).size() != 0) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User with this username exists");
         }
@@ -99,14 +148,14 @@ public class ClientController {
         user.setUserName(userCreateDto.getUserName());
         user.setPassword(SecurityUtil.toMd5(userCreateDto.getPassword()));
 
-        user = userRepository.saveAndFlush(user); //todo confirm via tests
+        user = userRepository.saveAndFlush(user);
 
         Client client = new Client();
         client.setUser(user);
         client.setOwnsAccount(true);
-        client = clientRepository.saveAndFlush(client); //todo confirm via tests
+        client = clientRepository.saveAndFlush(client);
         user.setClient(client);
-        user = userRepository.saveAndFlush(user); //todo confirm via tests
+        user = userRepository.saveAndFlush(user);
 
 
         return ResponseEntity.status(HttpStatus.OK).body(clientRepository.findById(client.getClientId()).get());

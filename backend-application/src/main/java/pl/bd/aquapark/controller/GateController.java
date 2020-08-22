@@ -85,6 +85,7 @@ public class GateController {
         usage.setEnteringEvent(savedEvent);
         usage.setAquaparkAttraction(gate.getAquaparkAttraction());
         usage.setVisit(activeVisit);
+        usage.setPriceListItem(priceListItem);
 
         usageRepository.save(usage);
 

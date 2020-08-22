@@ -97,7 +97,6 @@ public class PricingUtil {
         conditions1.setChildOnly(childOnly);
         conditions1.setWeekendOnly(weekendOnly);
 
-        //return repository.save(conditions1); todo confirm via tests
-        return conditions1;
+        return repository.save(conditions1);
     }
 }

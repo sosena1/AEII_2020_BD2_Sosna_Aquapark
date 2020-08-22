@@ -61,6 +61,11 @@ public class VisitController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
+        if (anonVisit.getBirthDate() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Birthdate is required");
+        }
+
+
         User user = new User();
         user.setBirthDate(anonVisit.getBirthDate());
         user.setFirstName(anonVisit.getFirstName());
@@ -77,6 +82,11 @@ public class VisitController {
         client = clientRepository.save(client);
 
         ClientIdentificator clientIdentificator = identificatorRepository.findById(anonVisit.getIdentificatorId()).get();
+        if (clientIdentificator.getIsInUse()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Identificator already in use");
+        }
+
+
         clientIdentificator.setIsInUse(true);
         clientIdentificator = identificatorRepository.save(clientIdentificator);
 
@@ -120,7 +130,19 @@ public class VisitController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User is not a client");
         }
 
-        //todo check if client is already in some visit
+        List<Visit> visits = client.getVisits();
+
+        boolean allFinished = true;
+        for (Visit checkedVisit : visits) {
+            if (!checkedVisit.getHasEnded()) {
+                allFinished = false;
+                break;
+            }
+        }
+
+        if (!allFinished) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Client already has a visit");
+        }
 
         identificator.setIsInUse(true);
         identificator = identificatorRepository.save(identificator);
