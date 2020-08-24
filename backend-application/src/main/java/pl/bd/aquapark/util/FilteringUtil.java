@@ -98,7 +98,7 @@ public class FilteringUtil<T> {
                 .stream()
                 .filter(
                         (T t) -> {
-                            return !(getter.getDate(t).compareTo(startingDate) > 0); //todo test
+                            return !(getter.getDate(t).compareTo(startingDate) > 0);
                         })
                 .collect(Collectors.toList());
         return this;
@@ -114,7 +114,7 @@ public class FilteringUtil<T> {
                 .stream()
                 .filter(
                         (T t) -> {
-                            return !(getter.getDate(t).compareTo(endingDate) < 0); //todo test
+                            return !(getter.getDate(t).compareTo(endingDate) < 0);
                         })
                 .collect(Collectors.toList());
         return this;
