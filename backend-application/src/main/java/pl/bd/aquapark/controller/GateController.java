@@ -1,11 +1,8 @@
 package pl.bd.aquapark.controller;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -162,13 +159,81 @@ public class GateController {
         return new SharedCheckerResponse(gate, clientIdentificator, null);
     }
 
-    private @Data @AllArgsConstructor static class SharedCheckerResponse {
+    private static class SharedCheckerResponse {
         private AquaparkAttractionGate gate;
         private ClientIdentificator identificator;
         private ResponseEntity<String> response;
 
         public SharedCheckerResponse(ResponseEntity<String> response) {
             this.response = response;
+        }
+
+        public SharedCheckerResponse(AquaparkAttractionGate gate, ClientIdentificator identificator, ResponseEntity<String> response) {
+            this.gate = gate;
+            this.identificator = identificator;
+            this.response = response;
+        }
+
+        public AquaparkAttractionGate getGate() {
+            return this.gate;
+        }
+
+        public ClientIdentificator getIdentificator() {
+            return this.identificator;
+        }
+
+        public ResponseEntity<String> getResponse() {
+            return this.response;
+        }
+
+        public void setGate(AquaparkAttractionGate gate) {
+            this.gate = gate;
+        }
+
+        public void setIdentificator(ClientIdentificator identificator) {
+            this.identificator = identificator;
+        }
+
+        public void setResponse(ResponseEntity<String> response) {
+            this.response = response;
+        }
+
+        public boolean equals(final Object o) {
+            if (o == this) return true;
+            if (!(o instanceof SharedCheckerResponse)) return false;
+            final SharedCheckerResponse other = (SharedCheckerResponse) o;
+            if (!other.canEqual((Object) this)) return false;
+            final Object this$gate = this.getGate();
+            final Object other$gate = other.getGate();
+            if (this$gate == null ? other$gate != null : !this$gate.equals(other$gate)) return false;
+            final Object this$identificator = this.getIdentificator();
+            final Object other$identificator = other.getIdentificator();
+            if (this$identificator == null ? other$identificator != null : !this$identificator.equals(other$identificator))
+                return false;
+            final Object this$response = this.getResponse();
+            final Object other$response = other.getResponse();
+            if (this$response == null ? other$response != null : !this$response.equals(other$response)) return false;
+            return true;
+        }
+
+        protected boolean canEqual(final Object other) {
+            return other instanceof SharedCheckerResponse;
+        }
+
+        public int hashCode() {
+            final int PRIME = 59;
+            int result = 1;
+            final Object $gate = this.getGate();
+            result = result * PRIME + ($gate == null ? 43 : $gate.hashCode());
+            final Object $identificator = this.getIdentificator();
+            result = result * PRIME + ($identificator == null ? 43 : $identificator.hashCode());
+            final Object $response = this.getResponse();
+            result = result * PRIME + ($response == null ? 43 : $response.hashCode());
+            return result;
+        }
+
+        public String toString() {
+            return "GateController.SharedCheckerResponse(gate=" + this.getGate() + ", identificator=" + this.getIdentificator() + ", response=" + this.getResponse() + ")";
         }
     }
 }

@@ -2,8 +2,6 @@ package pl.bd.aquapark.dao;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import lombok.Getter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -12,7 +10,6 @@ import java.sql.Date;
 @JsonIgnoreProperties
 @Entity
 @Table(name = "user")
-@Data
 public class User {
 
     @Id
@@ -46,7 +43,6 @@ public class User {
 
     @Size(max = 45, message = "password can be up to 45 characters long")
     @Column(name = "password", nullable = true)
-    @Getter(onMethod = @__( @JsonIgnore))
     private String password;
 
     @Size(max = 45, message = "pesel can be up to 45 characters long")
@@ -57,16 +53,17 @@ public class User {
     private Date birthDate;
 
     @OneToOne(mappedBy = "user")
-    @Getter(onMethod = @__( @JsonIgnore))
     private Client client;
 
     @OneToOne(mappedBy = "user")
-    @Getter(onMethod = @__( @JsonIgnore))
     private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "genderid")
     private Gender gender;
+
+    public User() {
+    }
 
     public boolean getIsClient() {
         return client != null;
@@ -119,5 +116,112 @@ public class User {
         return "User{" +
                 "userId=" + userId +
                 '}';
+    }
+
+    public Long getUserId() {
+        return this.userId;
+    }
+
+    public @Size(max = 45, message = "first name can be up to 45 characters long") String getFirstName() {
+        return this.firstName;
+    }
+
+    public @Size(max = 45, message = "last name can be up to 45 characters long") String getLastName() {
+        return this.lastName;
+    }
+
+    public @Size(max = 45, message = "address can be up to 45 characters long") String getAddress() {
+        return this.address;
+    }
+
+    public @Size(max = 45, message = "contact number can be up to 45 characters long") String getContactNumber() {
+        return this.contactNumber;
+    }
+
+    public @Size(max = 45, message = "other information can be up to 45 characters long") String getOtherInformation() {
+        return this.otherInformation;
+    }
+
+    public @Size(max = 45, message = "username can be up to 45 characters long") String getUserName() {
+        return this.userName;
+    }
+
+    public @Size(max = 45, message = "pesel can be up to 45 characters long") String getPesel() {
+        return this.pesel;
+    }
+
+    public Date getBirthDate() {
+        return this.birthDate;
+    }
+
+    public Gender getGender() {
+        return this.gender;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public void setFirstName(@Size(max = 45, message = "first name can be up to 45 characters long") String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(@Size(max = 45, message = "last name can be up to 45 characters long") String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setAddress(@Size(max = 45, message = "address can be up to 45 characters long") String address) {
+        this.address = address;
+    }
+
+    public void setContactNumber(@Size(max = 45, message = "contact number can be up to 45 characters long") String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public void setOtherInformation(@Size(max = 45, message = "other information can be up to 45 characters long") String otherInformation) {
+        this.otherInformation = otherInformation;
+    }
+
+    public void setUserName(@Size(max = 45, message = "username can be up to 45 characters long") String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(@Size(max = 45, message = "password can be up to 45 characters long") String password) {
+        this.password = password;
+    }
+
+    public void setPesel(@Size(max = 45, message = "pesel can be up to 45 characters long") String pesel) {
+        this.pesel = pesel;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    @JsonIgnore
+    public @Size(max = 45, message = "password can be up to 45 characters long") String getPassword() {
+        return this.password;
+    }
+
+    @JsonIgnore
+    public Client getClient() {
+        return this.client;
+    }
+
+    @JsonIgnore
+    public Employee getEmployee() {
+        return this.employee;
     }
 }
