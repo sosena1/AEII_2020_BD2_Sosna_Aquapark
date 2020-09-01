@@ -1,14 +1,12 @@
 package pl.bd.aquapark.dao;
 
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "role")
-public @Data
+public
 class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +18,9 @@ class Role {
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private Set<Employee> employees;
+
+    public Role() {
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -37,5 +38,33 @@ class Role {
         int result = roleId.hashCode();
         result = 31 * result + roleName.hashCode();
         return result;
+    }
+
+    public Long getRoleId() {
+        return this.roleId;
+    }
+
+    public String getRoleName() {
+        return this.roleName;
+    }
+
+    public Set<Employee> getEmployees() {
+        return this.employees;
+    }
+
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public String toString() {
+        return "Role(roleId=" + this.getRoleId() + ", roleName=" + this.getRoleName() + ", employees=" + this.getEmployees() + ")";
     }
 }

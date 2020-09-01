@@ -5,7 +5,6 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import pl.bd.aquapark.Roles;
 import pl.bd.aquapark.dao.Client;
@@ -19,7 +18,6 @@ import pl.bd.aquapark.util.GetAllUtil;
 import pl.bd.aquapark.util.SecurityUtil;
 
 import javax.servlet.http.HttpServletRequest;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

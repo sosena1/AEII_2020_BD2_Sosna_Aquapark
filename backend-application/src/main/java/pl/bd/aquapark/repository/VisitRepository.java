@@ -5,7 +5,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 import pl.bd.aquapark.dao.Visit;
 
-import java.sql.Date;
 import java.util.List;
 
 @Repository
