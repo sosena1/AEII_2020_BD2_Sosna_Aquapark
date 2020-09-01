@@ -188,13 +188,17 @@ public class VisitController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Identificator was not in use");
         }
 
-        //todo check if all Usages ended
-
         Visit visit = identificator.getActiveVisit();
+        List<AquaparkAttractionUsage> usages = visit.getAquaparkAttractionUsages();
+        for(AquaparkAttractionUsage usage : usages) {
+            if (usage.getLeavingTime() == null) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cannot end visit since some usage has not ended yet");
+            }
+        }
         identificator.setIsInUse(false);
         visit.setEndTime(DateUtil.getCurrentTime());
 
-        List<AquaparkAttractionUsage> usages = visit.getAquaparkAttractionUsages();
+       usages = visit.getAquaparkAttractionUsages();
 
         BigDecimal cost = new BigDecimal(0);
         for(AquaparkAttractionUsage usage : usages) {
