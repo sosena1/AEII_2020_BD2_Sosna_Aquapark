@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { SigninComponent } from './signin/signin.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {BasicAuthInterceptor} from "./helpers/basicauth.interceptor";
 
 
 @NgModule({
@@ -34,9 +36,10 @@ import { HomepageComponent } from './homepage/homepage.component';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
