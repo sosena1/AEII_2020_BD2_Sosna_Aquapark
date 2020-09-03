@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
+import {Visit} from '../data/visit';
+import {VisitService} from '../data/visit.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -6,15 +8,27 @@ import {Router} from '@angular/router';
   templateUrl: './visits.component.html',
   styleUrls: ['./visits.component.css']
 })
+
+@Injectable({
+  providedIn: 'root',
+})
+
 export class VisitsComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  visits: Visit[];
+
+  constructor(private visitService: VisitService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  // tslint:disable-next-line:typedef
-  toHomepage(){
-    this.router.navigate(['/']);
-  }
+  // // tslint:disable-next-line:typedef
+  // ngOnInit() {
+  //   // this.visitService.getVisits().subscribe(visits => this.visits = visits);
+  // }
+
+  // // tslint:disable-next-line:typedef
+  // toHomepage(){
+  //   this.router.navigate(['/']);
+  // }
 }
