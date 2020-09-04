@@ -9,10 +9,6 @@ import {Router} from '@angular/router';
   styleUrls: ['./visits.component.css']
 })
 
-@Injectable({
-  providedIn: 'root',
-})
-
 export class VisitsComponent implements OnInit {
 
   visits: Visit[];
