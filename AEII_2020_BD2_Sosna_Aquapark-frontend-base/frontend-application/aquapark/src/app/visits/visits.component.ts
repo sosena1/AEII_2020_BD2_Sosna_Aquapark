@@ -1,5 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import {Visit} from '../data/visit';
+import {RootObject, Visit} from '../data/visit';
 import {VisitService} from '../data/visit.service';
 import {Router} from '@angular/router';
 
@@ -11,12 +11,9 @@ import {Router} from '@angular/router';
 
 export class VisitsComponent implements OnInit {
 
-  visits: Visit[];
-
   constructor(private visitService: VisitService, private router: Router) { }
 
-  ngOnInit(): void {
-  }
+  visits: RootObject;
 
   // // tslint:disable-next-line:typedef
   // ngOnInit() {
@@ -27,4 +24,10 @@ export class VisitsComponent implements OnInit {
   // toHomepage(){
   //   this.router.navigate(['/']);
   // }
+  private inputString: string;
+
+  ngOnInit(): void {
+    this.visitService.getVisits().subscribe(value => {this.visits = value; });
+    console.log();
+  }
 }

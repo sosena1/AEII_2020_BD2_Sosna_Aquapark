@@ -17,6 +17,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { SigninComponent } from './signin/signin.component';
 import { HomepageComponent } from './homepage/homepage.component';
 
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {BasicAuthInterceptor} from './helpers/basicauth.interceptor';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -37,9 +40,10 @@ import { HomepageComponent } from './homepage/homepage.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
