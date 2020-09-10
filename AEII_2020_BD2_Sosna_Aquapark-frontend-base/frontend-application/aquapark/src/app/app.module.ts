@@ -20,6 +20,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BasicAuthInterceptor} from './helpers/basicauth.interceptor';
 import {FormsModule} from "@angular/forms";
+import { UserDetailsComponent } from './employees/user-details.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {FormsModule} from "@angular/forms";
     PriceChangeComponent,
     NavbarComponent,
     SigninComponent,
-    HomepageComponent
+    HomepageComponent,
+    UserDetailsComponent
   ],
   imports: [
     BrowserModule,

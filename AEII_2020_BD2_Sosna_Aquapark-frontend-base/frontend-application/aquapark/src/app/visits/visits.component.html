@@ -9,13 +9,8 @@
   <div class="panel panel-primary">
     <div class="panel-heading">Wizyty</div>
     <div class="panel-body">
-      <h3>{{"Przerobić na listę wizyt - napis jest w pliku visits.components.html"}}</h3>
-
       <div class="col-md-6">
-        <h2>Lista wizyt</h2>
         <ul class="list-group">
-          <!--*ngFor-em zrobić, gdy baza będzie ok-->
-<!--          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let visit of visits"> - nie trzeba wtedy klasy ustawiać osobno -->
           <li class="list-group-item d-flex justify-content-between align-items-center"   *ngFor="let visit of visits._embedded.visits">
 <!--            {{visit.visitId}}-->
 <!--            Jeśli się zakończyła-->
@@ -37,12 +32,13 @@
 <!--            var replace = /http://localhost:4200//gi;-->
 <!--            var newstr = str.replace(replace, "environment.apiUrl");-->
 
-            <!--            {{" Klient: "}}-->
+<!--            {{" Klient: "}}-->
 <!--            {{visit.user.userId}}-->
 <!--            {{visit.client.firstName}}-->
 <!--            {{visit.user.lastName}}-->
           </li>
           <br>
+<!--          Już niepotrzebne, skoro jest navbar-->
 <!--          <button (click)="toHomepage()" class="btn btn-danger">Strona główna</button>-->
 <!--          <button class="btn btn-danger mt-4" (click)="toHomepage()">Strona główna</button>-->
         </ul>

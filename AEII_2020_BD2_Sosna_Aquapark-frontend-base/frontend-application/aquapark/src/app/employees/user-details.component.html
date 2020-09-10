@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!--<p>user-details works!</p>-->
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Aquapark</h1>
+    <h2>Szczegóły użytkownika</h2>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Wizyty</div>
+    <div class="panel-body">
+      <div class="col-md-6">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <h4>
+              {{"Nazwa użytkownika: "}}
+<!--              {{user.userName}}-->
+              <br>
+              {{"Użytkownik: "}}
+<!--              {{user.lastName}}-->
+              {{" "}}
+<!--              {{user.firstName}}-->
+              <br>
+              {{"Nr PESEL: "}}
+<!--              {{user.pesel}}-->
+              {{"Nr telefonu: "}}
+<!--              I tak dalej-->
+              <button (click)="returnButton()" class="btn btn-warn">Powrót</button>
+            </h4>
+          </li>
+          <br>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

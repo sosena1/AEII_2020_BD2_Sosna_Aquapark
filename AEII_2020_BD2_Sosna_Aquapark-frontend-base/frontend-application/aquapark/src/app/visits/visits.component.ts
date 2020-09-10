@@ -24,7 +24,6 @@ export class VisitsComponent implements OnInit {
   // toHomepage(){
   //   this.router.navigate(['/']);
   // }
-  private inputString: string;
 
   ngOnInit(): void {
     this.visitService.getVisits().subscribe(value => {this.visits = value; });
