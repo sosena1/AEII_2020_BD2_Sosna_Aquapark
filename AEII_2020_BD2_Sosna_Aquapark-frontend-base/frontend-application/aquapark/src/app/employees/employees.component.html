@@ -26,6 +26,8 @@
               <br>
               {{"Nr PESEL: "}}
               {{user.pesel}}
+              {{user._embedded.gender.genderName}}
+<!--              {{user._links.client.href}}-->
 <!--              Coś w tym stylu by się przydało poniżej w toUserDetails-->
 <!--              {{user._links.self.href}}-->
               <button (click)="toUserDetails()" mat-raised-button color="warn">Szczegóły</button>

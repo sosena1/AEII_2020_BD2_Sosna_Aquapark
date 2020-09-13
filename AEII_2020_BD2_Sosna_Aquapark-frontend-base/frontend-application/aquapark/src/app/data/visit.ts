@@ -48,6 +48,7 @@
   }
 
  export interface Visit {
+    clientName: string;
     date: string;
     startTime: string;
     endTime: string;

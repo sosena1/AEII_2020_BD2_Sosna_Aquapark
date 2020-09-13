@@ -2,6 +2,8 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import {RootObject, Visit} from '../data/visit';
 import {VisitService} from '../data/visit.service';
 import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {Client} from '../data/user.service';
 
 @Component({
   selector: 'app-visits',
@@ -11,7 +13,7 @@ import {Router} from '@angular/router';
 
 export class VisitsComponent implements OnInit {
 
-  constructor(private visitService: VisitService, private router: Router) { }
+  constructor(private visitService: VisitService, private router: Router, private httpClient: HttpClient) { }
 
   visits: RootObject;
 
@@ -26,7 +28,15 @@ export class VisitsComponent implements OnInit {
   // }
 
   ngOnInit(): void {
-    this.visitService.getVisits().subscribe(value => {this.visits = value; });
+    this.visitService.getVisits().subscribe(value => {
+      this.visits = value;
+      this.visits._embedded.visits.forEach(visit => {
+        this.httpClient.get<Client>(visit._links.client.href).subscribe(client => {
+          visit.clientName = client._embedded.user.firstName + ' ' +  client._embedded.user.lastName;
+        });
+      })
+
+    });
     console.log();
   }
 }

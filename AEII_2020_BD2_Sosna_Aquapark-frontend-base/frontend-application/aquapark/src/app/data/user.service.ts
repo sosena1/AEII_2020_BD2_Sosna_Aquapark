@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 // @ts-ignore
 import {User} from './user';
+import {Visit} from './visit.service';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,13 @@ export interface Gender {
 export interface Client {
     ownsAccount: boolean;
     visitsId: number[];
+    _embedded: Embedded3;
   }
+
+export interface Embedded3 {
+  visits: Visit[];
+  user: User;
+}
 
 export interface Employee {
   }

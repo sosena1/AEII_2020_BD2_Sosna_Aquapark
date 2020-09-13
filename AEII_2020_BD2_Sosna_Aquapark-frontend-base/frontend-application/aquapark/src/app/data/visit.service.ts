@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import { Visit } from './visit';
 import {environment} from '../../environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +22,11 @@ export class VisitService {
   // Do jednej konkretnej
   getVisit(visitId): Observable<Visit> {
     return this.http.get<Visit>('http://localhost:8080/api/visit/' + visitId);
+  }
+
+  addVisit(visitObject): any {
+    // tslint:disable-next-line:ban-types
+    return this.http.post<Object>((environment.apiUrl + 'api/visit/start_visit'), visitObject);
   }
 }
 
@@ -74,6 +80,8 @@ export interface Links {
 }
 
 export interface Visit {
+  [key: string]: any;
+  clientName?: string;
   date: string;
   startTime: string;
   endTime: string;
