@@ -12,6 +12,7 @@ export class EmployeesComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
+  show = false;
   users: RootObject;
 
   ngOnInit(): void {
@@ -19,8 +20,17 @@ export class EmployeesComponent implements OnInit {
     // console.log();
   }
 
-  // tslint:disable-next-line:typedef variable-name
-  toUserDetails(number: number) {
-    this.router.navigate(['/users/' + number]);
+  // tslint:disable-next-line:typedef
+  toUserDetails(){
+    this.show = !this.show;
   }
+
+  // tslint:disable-next-line:typedef variable-name
+  // toUserDetails() {
+  //   document.getElementById('siemaKamil').style.display = 'block';
+  //   // this.router.navigate(['/users/']);
+  // }
+  // toUserDetails(number: number) {
+  //   this.router.navigate(['/users/' + number]);
+  // }
 }

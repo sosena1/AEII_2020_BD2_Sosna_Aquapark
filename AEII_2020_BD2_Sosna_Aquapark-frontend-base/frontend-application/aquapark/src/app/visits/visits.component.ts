@@ -34,7 +34,7 @@ export class VisitsComponent implements OnInit {
         this.httpClient.get<Client>(visit._links.client.href).subscribe(client => {
           visit.clientName = client._embedded.user.firstName + ' ' +  client._embedded.user.lastName;
         });
-      })
+      });
 
     });
     console.log();

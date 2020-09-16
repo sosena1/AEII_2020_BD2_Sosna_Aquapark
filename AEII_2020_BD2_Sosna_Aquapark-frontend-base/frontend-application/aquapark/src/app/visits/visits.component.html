@@ -7,9 +7,9 @@
     <h2>Lista wizyt</h2>
   </div>
   <div class="panel panel-primary">
-    <div class="panel-heading">Wizyty</div>
+    <div class="panel-heading"><h3>Wizyty</h3></div>
     <div class="panel-body">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <ul class="list-group">
           <li class="list-group-item d-flex justify-content-between align-items-center"   *ngFor="let visit of visits._embedded.visits">
 <!--            {{visit.visitId}}-->
@@ -22,11 +22,14 @@
             {{", "}}
             {{visit.date}}
             {{"   | "}}
+            {{"Czas wyjścia: "}}
+            {{visit.endTime}}
+            <br>
             {{"Cena biletu: "}}
             {{visit.value}}
             {{"zł"}}
-            {{"   | "}}
-            {{"Nazwisko klienta"}}
+            <br>
+            {{"Nazwisko klienta:"}}
             {{visit.clientName}}
 
             </h4>

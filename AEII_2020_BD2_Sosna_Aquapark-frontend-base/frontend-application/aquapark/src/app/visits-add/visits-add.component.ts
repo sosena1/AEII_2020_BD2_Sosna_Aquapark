@@ -32,10 +32,8 @@ export class VisitsAddComponent implements OnInit {
     };
     // this.visitService.addVisit(visitObject);
     this.visitService.addVisit(visitObject).subscribe(data => console.log(data));
-
     // this.router.navigate(['/users/' + emptyField]);
   }
-
 }
 
 

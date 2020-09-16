@@ -24,6 +24,11 @@ export class UserService {
   getUser(userId): Observable<User> {
     return this.http.get<User>('http://localhost:8080/api/user/' + userId);
   }
+
+  addUser(userObject): any {
+    // tslint:disable-next-line:ban-types
+    return this.http.post<Object>((environment.apiUrl + 'api/client/create'), userObject);
+  }
 }
 
 
@@ -42,6 +47,7 @@ export interface Embedded3 {
   user: User;
 }
 
+// tslint:disable-next-line:no-empty-interface
 export interface Employee {
   }
 
