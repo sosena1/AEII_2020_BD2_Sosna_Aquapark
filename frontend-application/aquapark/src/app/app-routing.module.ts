@@ -12,6 +12,7 @@ import {UserDetailsComponent} from './employees/user-details.component';
 
 
 const routes: Routes = [
+  {path: '', redirectTo: 'homepage', pathMatch: 'full'},
   {path: 'visitpage', component: VisitsComponent},
   {path: 'employees', component: EmployeesComponent},
   {path: 'price', component: PriceChangeComponent},
