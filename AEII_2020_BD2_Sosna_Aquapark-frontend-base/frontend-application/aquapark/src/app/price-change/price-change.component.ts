@@ -52,6 +52,6 @@ export class PriceChangeComponent implements OnInit {
       birthDate: this.birthDate,
       otherInformation: this.otherInformation
     };
-    this.userService.addUser(userObject).subscribe(data => console.log(data));
+    this.userService.addUser(userObject).subscribe(data => console.log(data), exception => {window.alert("Wprowadzono błędne dane")});
   }
 }
