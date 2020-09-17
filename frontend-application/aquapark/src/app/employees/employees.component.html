@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!--<p>employees works!</p>-->
+
+<!--Lepiej jeśli to będzie lista użytkowników, niż pracowników ze względu na uprawnienia-->
+
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Aquapark</h1>
+    <h2>Lista użytkowników</h2>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3>Użytkownicy</h3>
+      <div class="d-flex flex-row-reverse p-2">
+      <button (click)="toUserDetails()"  mat-raised-button color="warn">Szczegóły</button>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-12">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"   *ngFor="let user of users._embedded.users">
+            <div class="d-flex flex-row p-2">
+              {{"Nazwa użytkownika: "}}
+              {{user.userName}}
+              <br>
+              {{"Użytkownik: "}}
+              {{user.lastName}}
+              {{" "}}
+              {{user.firstName}}
+              <br><hr><br><br>
+            </div>
+            <div class="d-flex flex-row-reverse p-2">
+              <div *ngIf="show">
+<!--              <div id="siemaKamil">-->
+
+              {{"Nr telefonu: "}}
+              {{user.contactNumber}}
+              <br>
+              {{"Adres: "}}
+              {{user.address}}
+              <br>
+              {{"Nr PESEL: "}}
+              {{user.pesel}}
+              <br>
+              {{"Data urodzenia: "}}
+              {{user.birthDate}}
+              {{"Płeć: "}}
+              {{user._embedded.gender.genderName}}
+              <br>
+              {{"Dodatkowe informacje: "}}
+              {{user.otherInformation}}
+              </div>
+              <hr>
+            </div>
+<!--            </h7>-->
+          </li>
+          <br>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
