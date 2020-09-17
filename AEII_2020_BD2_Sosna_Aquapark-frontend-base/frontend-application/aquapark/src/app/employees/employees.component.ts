@@ -17,20 +17,10 @@ export class EmployeesComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(value => {this.users = value; });
-    // console.log();
   }
 
-  // tslint:disable-next-line:typedef
   toUserDetails(){
     this.show = !this.show;
   }
 
-  // tslint:disable-next-line:typedef variable-name
-  // toUserDetails() {
-  //   document.getElementById('siemaKamil').style.display = 'block';
-  //   // this.router.navigate(['/users/']);
-  // }
-  // toUserDetails(number: number) {
-  //   this.router.navigate(['/users/' + number]);
-  // }
 }
