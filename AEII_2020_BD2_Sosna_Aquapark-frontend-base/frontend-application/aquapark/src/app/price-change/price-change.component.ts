@@ -14,6 +14,7 @@ export class PriceChangeComponent implements OnInit {
   public surname: string;
   public pesel: number;
   public genderId: number;
+  public gender: string;
   public address: string;
   public contactNumber: number;
   public userName: string;
@@ -28,6 +29,7 @@ export class PriceChangeComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   submit(){
+    this.genderId = this.gender === "Kobieta" ? 1: (this.gender === "N/A" ? 3: 2);
     console.log(
       this.name,
       this.surname,

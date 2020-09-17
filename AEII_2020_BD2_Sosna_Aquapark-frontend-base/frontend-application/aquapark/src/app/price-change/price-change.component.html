@@ -13,7 +13,12 @@
         <input type="text" class="form-control" id="nr1" name="nr1" [(ngModel)]="name" placeholder="Imię">
         <input type="text" class="form-control" id="nr2" name="nr2" [(ngModel)]="surname" placeholder="Nazwisko">
         <input type="text" class="form-control" id="nr3" name="nr2" [(ngModel)]="pesel" placeholder="Nr PESEL">
-        <input type="text" class="form-control" id="nr4" name="nr2" [(ngModel)]="genderId" placeholder="Płeć">
+        <input list="browsers" class="form-control" name="browser" id="browser" placeholder="Płeć"  [(ngModel)]="gender">
+        <datalist id="browsers">
+          <option value="Mężczyzna">
+          <option value="Kobieta">
+          <option value="N/A">
+        </datalist>
         <input type="text" class="form-control" id="nr5" name="nr2" [(ngModel)]="address" placeholder="Adres">
         <input type="text" class="form-control" id="nr6" name="nr2" [(ngModel)]="contactNumber" placeholder="Nr telefonu">
         <input type="text" class="form-control" id="nr7" name="nr2" [(ngModel)]="userName" placeholder="Login użytkownika">
