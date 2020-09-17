@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!--<p>visits works!</p>-->
+
+<div class="container">
+  <div class="jumbotron">
+    <h1>Aquapark</h1>
+    <h2>Lista wizyt</h2>
+  </div>
+  <div class="panel panel-primary">
+    <div class="panel-heading"><h3>Wizyty</h3></div>
+    <div class="panel-body">
+      <div class="col-md-12">
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center"   *ngFor="let visit of visits._embedded.visits">
+<!--            {{visit.visitId}}-->
+<!--            Jeśli się zakończyła-->
+<!--            {{"ID Klienta: "}}-->
+<!--            {{visit._links.clientIdentificator}}-->
+            <h4>
+            {{"Czas wejścia: "}}
+            {{visit.startTime}}
+            {{", "}}
+            {{visit.date}}
+            {{"   | "}}
+            {{"Czas wyjścia: "}}
+            {{visit.endTime}}
+            <br>
+            {{"Cena biletu: "}}
+            {{visit.value}}
+            {{"zł"}}
+            <br>
+            {{"Nazwisko klienta:"}}
+            {{visit.clientName}}
+
+            </h4>
+<!--            var str = "http://localhost:4200/api/visits/1/client";-->
+<!--            {{inputString = visit._links.client.href}}-->
+<!--            var replace = /http://localhost:4200//gi;-->
+<!--            var newstr = str.replace(replace, "environment.apiUrl");-->
+
+<!--            {{" Klient: "}}-->
+<!--            {{visit.user.userId}}-->
+<!--            {{visit.client.firstName}}-->
+<!--            {{visit.user.lastName}}-->
+          </li>
+          <br>
+<!--          Już niepotrzebne, skoro jest navbar-->
+<!--          <button (click)="toHomepage()" class="btn btn-danger">Strona główna</button>-->
+<!--          <button class="btn btn-danger mt-4" (click)="toHomepage()">Strona główna</button>-->
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
