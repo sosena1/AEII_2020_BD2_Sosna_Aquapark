@@ -155,7 +155,10 @@ public class ClientController {
         user.setClient(client);
         user = userRepository.saveAndFlush(user);
 
+        clientRepository.flush();
+        Client client1 = clientRepository.findById(client.getClientId()).get();
 
-        return ResponseEntity.status(HttpStatus.OK).body(clientRepository.findById(client.getClientId()).get());
+
+        return ResponseEntity.status(HttpStatus.OK).body(client1);
     }
 }

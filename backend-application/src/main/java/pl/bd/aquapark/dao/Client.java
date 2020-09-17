@@ -32,6 +32,9 @@ class Client {
     }
 
     public List<Long> getVisitsId() {
+        if (visits == null) {
+            return new ArrayList<>();
+        }
         List<Long> integers = new ArrayList<>();
         for (Visit visit : visits) {
             integers.add(visit.getVisitId());
@@ -47,6 +50,9 @@ class Client {
     }
 
     public Long getClientId() {
+        if (this.clientId == null) {
+            return -1L;
+        }
         return this.clientId;
     }
 
